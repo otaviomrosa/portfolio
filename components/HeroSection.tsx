@@ -12,7 +12,7 @@ const socialLinks = [
 ];
 
 const stats = [
-  { value: 'NeurIPS', label: "paper submitted" },
+  { value: 'NeurIPS', label: 'paper submitted' },
   { value: '3×', label: 'research labs' },
   { value: "Spring '27", label: 'graduating' },
 ];
@@ -22,6 +22,13 @@ const fadeUp = (delay: number) => ({
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay },
 });
+
+const statGradient = {
+  background: 'linear-gradient(135deg, #8898d0 0%, #aa88cc 100%)',
+  WebkitBackgroundClip: 'text' as const,
+  WebkitTextFillColor: 'transparent' as const,
+  backgroundClip: 'text' as const,
+};
 
 export default function HeroSection() {
   return (
@@ -36,26 +43,26 @@ export default function HeroSection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 80% 60% at 50% 40%, transparent 30%, rgba(8,8,16,0.55) 100%)',
+            'radial-gradient(ellipse 80% 60% at 50% 40%, transparent 30%, rgba(10,10,10,0.55) 100%)',
         }}
       />
 
-      {/* Bottom fade to content */}
+      {/* Bottom fade */}
       <div
         className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
         style={{ background: 'linear-gradient(to bottom, transparent, var(--bg))' }}
       />
 
-      {/* Top gradient for nav readability */}
+      {/* Top fade for nav */}
       <div
         className="absolute top-0 left-0 right-0 h-32 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, rgba(8,8,16,0.5), transparent)' }}
+        style={{ background: 'linear-gradient(to bottom, rgba(10,10,10,0.5), transparent)' }}
       />
 
       {/* Main content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto select-none">
         <motion.h1
-          {...fadeUp(0.25)}
+          {...fadeUp(0.2)}
           className="font-bold leading-[0.92] tracking-tight mb-5"
           style={{ fontSize: 'clamp(3.5rem, 10vw, 7.5rem)', color: 'var(--text)' }}
         >
@@ -63,7 +70,7 @@ export default function HeroSection() {
           <br />
           <span
             style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.55) 100%)',
+              background: 'linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.5) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -74,32 +81,33 @@ export default function HeroSection() {
         </motion.h1>
 
         <motion.p
-          {...fadeUp(0.4)}
-          className="text-base md:text-lg mb-2 font-light"
+          {...fadeUp(0.35)}
+          className="text-base md:text-lg mb-3 font-light"
           style={{ color: 'var(--text-secondary)' }}
         >
           MS AI @ USF &nbsp;·&nbsp; Computer Vision &amp; Generative AI Research
         </motion.p>
 
+        {/* Description — bigger and more legible */}
         <motion.p
-          {...fadeUp(0.5)}
-          className="text-sm md:text-base mb-9 max-w-md mx-auto"
-          style={{ color: 'var(--text-muted)' }}
+          {...fadeUp(0.47)}
+          className="text-base md:text-lg mb-9 max-w-lg mx-auto font-light leading-relaxed"
+          style={{ color: 'var(--text-secondary)' }}
         >
           Investigating where neural networks fail to distinguish the real from the synthetic.
         </motion.p>
 
-        {/* Stats row */}
+        {/* Stats row — colored gradient values */}
         <motion.div
-          {...fadeUp(0.6)}
-          className="flex items-center justify-center gap-6 md:gap-10 mb-9"
+          {...fadeUp(0.58)}
+          className="flex items-center justify-center gap-6 md:gap-12 mb-9"
         >
           {stats.map((s) => (
             <div key={s.label} className="text-center">
-              <p className="text-lg md:text-xl font-semibold" style={{ color: 'var(--accent)' }}>
+              <p className="text-lg md:text-xl font-semibold" style={statGradient}>
                 {s.value}
               </p>
-              <p className="text-[10px] tracking-widest uppercase" style={{ color: 'var(--text-muted)' }}>
+              <p className="text-[10px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>
                 {s.label}
               </p>
             </div>
@@ -107,7 +115,7 @@ export default function HeroSection() {
         </motion.div>
 
         {/* Social links */}
-        <motion.div {...fadeUp(0.72)} className="flex items-center justify-center gap-3">
+        <motion.div {...fadeUp(0.70)} className="flex items-center justify-center gap-3">
           {socialLinks.map(({ icon: Icon, label, href }) => (
             <Link
               key={label}

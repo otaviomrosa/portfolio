@@ -19,30 +19,21 @@ export default function LogHero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 90% 60% at 50% 30%, transparent 20%, rgba(8,8,16,0.6) 100%)',
+            'radial-gradient(ellipse 90% 60% at 50% 30%, transparent 20%, rgba(10,10,10,0.6) 100%)',
         }}
       />
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, rgba(8,8,16,0.35), transparent 40%, var(--bg) 100%)' }}
+        style={{ background: 'linear-gradient(to bottom, rgba(10,10,10,0.35), transparent 40%, var(--bg) 100%)' }}
       />
 
       {/* Text */}
-      <div className="relative z-10 text-center pb-8 px-6">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-[10px] tracking-[0.35em] uppercase mb-2 font-medium"
-          style={{ color: 'var(--text-muted)' }}
-        >
-          Otavio Rosa
-        </motion.p>
+      <div className="relative z-10 text-center pb-10 px-6">
         <motion.h1
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl md:text-5xl font-bold tracking-tight"
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-bold tracking-tight mb-3"
           style={{ color: 'var(--text)' }}
         >
           Study Log
@@ -50,11 +41,11 @@ export default function LogHero() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.22 }}
-          className="text-sm mt-2"
-          style={{ color: 'var(--text-muted)' }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="text-base md:text-lg font-light leading-relaxed"
+          style={{ color: 'var(--text-secondary)' }}
         >
-          Notes, research dives, and things I'm currently thinking about.
+          Notes, research dives, and things I&apos;m currently thinking about.
         </motion.p>
       </div>
     </section>
