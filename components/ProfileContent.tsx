@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
 
 // ─── Accent tokens ──────────────────────────────────────────────────────────
-const BLUE = '#8ecad4';
-const BLUE_MID = '#5a9aaa';
+const BLUE = '#e8e8e8';
+const BLUE_MID = '#909090';
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 
@@ -123,13 +123,13 @@ function SectionHeading({ num, children }: { num: string; children: React.ReactN
   return (
     <div className="flex items-center gap-3 mb-10">
       <span
-        className="text-xs font-mono tabular-nums"
+        className="text-xs tabular-nums"
         style={{ color: 'var(--text-muted)' }}
       >
         {num}
       </span>
       <span
-        className="text-xs font-semibold tracking-[0.3em] uppercase"
+        className="text-sm font-medium tracking-wide uppercase"
         style={{ color: BLUE_MID }}
       >
         {children}
@@ -251,7 +251,7 @@ export default function ProfileContent() {
                           </p>
                         </div>
                         <span
-                          className="text-sm shrink-0 font-mono"
+                          className="text-sm shrink-0"
                           style={{ color: 'var(--text-muted)' }}
                         >
                           {role.period}
@@ -285,7 +285,7 @@ export default function ProfileContent() {
                 {skillGroups.map((group) => (
                   <div key={group.label}>
                     <p
-                      className="text-xs tracking-widest uppercase mb-3"
+                      className="text-xs tracking-wide uppercase mb-3"
                       style={{ color: 'var(--text-muted)' }}
                     >
                       {group.label}
@@ -320,8 +320,8 @@ export default function ProfileContent() {
                             <span
                               className="text-[9px] font-semibold tracking-widest uppercase px-1.5 py-0.5 rounded"
                               style={{
-                                background: 'rgba(60,140,160,0.1)',
-                                border: '1px solid rgba(60,140,160,0.18)',
+                                background: 'rgba(255,255,255,0.06)',
+                                border: '1px solid rgba(255,255,255,0.12)',
                                 color: BLUE,
                               }}
                             >
@@ -335,7 +335,7 @@ export default function ProfileContent() {
                       </div>
                     </div>
                     <span
-                      className="text-sm font-mono shrink-0"
+                      className="text-sm shrink-0"
                       style={{ color: 'var(--text-muted)' }}
                     >
                       {ed.period}

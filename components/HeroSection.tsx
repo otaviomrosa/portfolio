@@ -27,9 +27,9 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Particle canvas */}
-      <div className="absolute inset-0">
+      {/* <div className="absolute inset-0">
         <ParticleCanvas className="w-full h-full" />
-      </div>
+      </div> */}
 
       {/* Radial vignette */}
       <div
@@ -93,7 +93,7 @@ export default function HeroSection() {
             <div key={s.label} className="text-center">
               <p
                 className="text-lg md:text-xl font-semibold"
-                style={{ color: '#8ecad4' }}
+                style={{ color: '#e8e8e8' }}
               >
                 {s.value}
               </p>
@@ -113,9 +113,9 @@ export default function HeroSection() {
               target={href.startsWith('http') ? '_blank' : undefined}
               rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
               aria-label={label}
-              className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 card card-hover"
-              style={{ color: 'var(--text-secondary)' }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#8ecad4')}
+              className="w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-200"
+              style={{ color: 'var(--text-muted)' }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#e8e8e8')}
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)')}
             >
               <Icon size={17} strokeWidth={1.7} />
