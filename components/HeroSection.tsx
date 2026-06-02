@@ -23,13 +23,6 @@ const fadeUp = (delay: number) => ({
   transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay },
 });
 
-const statGradient = {
-  background: 'linear-gradient(135deg, #8898d0 0%, #aa88cc 100%)',
-  WebkitBackgroundClip: 'text' as const,
-  WebkitTextFillColor: 'transparent' as const,
-  backgroundClip: 'text' as const,
-};
-
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -88,7 +81,6 @@ export default function HeroSection() {
           MS AI @ USF &nbsp;·&nbsp; Computer Vision &amp; Generative AI Research
         </motion.p>
 
-        {/* Description — bigger and more legible */}
         <motion.p
           {...fadeUp(0.47)}
           className="text-base md:text-lg mb-9 max-w-lg mx-auto font-light leading-relaxed"
@@ -97,14 +89,17 @@ export default function HeroSection() {
           Investigating where neural networks fail to distinguish the real from the synthetic.
         </motion.p>
 
-        {/* Stats row — colored gradient values */}
+        {/* Stats — shiny light blue */}
         <motion.div
           {...fadeUp(0.58)}
           className="flex items-center justify-center gap-6 md:gap-12 mb-9"
         >
           {stats.map((s) => (
             <div key={s.label} className="text-center">
-              <p className="text-lg md:text-xl font-semibold" style={statGradient}>
+              <p
+                className="text-lg md:text-xl font-semibold"
+                style={{ color: '#90c8f4' }}
+              >
                 {s.value}
               </p>
               <p className="text-[10px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>
@@ -125,7 +120,7 @@ export default function HeroSection() {
               aria-label={label}
               className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 card card-hover"
               style={{ color: 'var(--text-secondary)' }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text)')}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#90c8f4')}
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)')}
             >
               <Icon size={17} strokeWidth={1.7} />

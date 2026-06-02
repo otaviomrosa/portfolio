@@ -1,6 +1,14 @@
 import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
+// ─── Design tokens (metallic blue palette) ─────────────────────────────────
+const BLUE_LIGHT  = '#90c8f4';   // shiny highlight
+const BLUE_MID    = '#4a80c0';   // labels, supervisors
+const BLUE_LABEL  = '#5888c8';   // section labels
+const NAVY_GRAD   = (a = 0.6) =>
+  `linear-gradient(135deg, rgba(13,17,46,${a}) 0%, rgba(22,27,46,${a}) 100%)`;
+const BLUE_BORDER = 'rgba(50,100,200,0.14)';
+
 // ─── Data ──────────────────────────────────────────────────────────────────
 
 const experiences = [
@@ -76,8 +84,8 @@ const experiences = [
 const skillGroups = [
   {
     label: 'AI / ML Research',
-    gradient: 'linear-gradient(135deg, rgba(12,16,38,0.7) 0%, rgba(14,10,30,0.7) 100%)',
-    borderColor: 'rgba(90,110,220,0.12)',
+    gradient: NAVY_GRAD(0.7),
+    borderColor: BLUE_BORDER,
     tags: [
       'PyTorch', 'Computer Vision', 'Generative Models', 'Diffusion Models',
       'LLMs', 'Transformers', 'Fine-tuning', 'NLP',
@@ -87,7 +95,7 @@ const skillGroups = [
   },
   {
     label: 'Systems & Infrastructure',
-    gradient: 'linear-gradient(135deg, rgba(10,14,20,0.7) 0%, rgba(8,12,18,0.7) 100%)',
+    gradient: 'linear-gradient(135deg, rgba(10,12,20,0.7) 0%, rgba(12,15,25,0.7) 100%)',
     borderColor: 'rgba(255,255,255,0.08)',
     tags: [
       'Python', 'ROS 2', 'NVIDIA Jetson', 'CUDA',
@@ -97,7 +105,7 @@ const skillGroups = [
   },
   {
     label: 'Web & Software',
-    gradient: 'linear-gradient(135deg, rgba(10,14,20,0.7) 0%, rgba(8,12,18,0.7) 100%)',
+    gradient: 'linear-gradient(135deg, rgba(10,12,20,0.7) 0%, rgba(12,15,25,0.7) 100%)',
     borderColor: 'rgba(255,255,255,0.08)',
     tags: [
       'Angular', 'TypeScript', 'React', 'FastAPI',
@@ -106,8 +114,8 @@ const skillGroups = [
   },
   {
     label: 'Research Methods',
-    gradient: 'linear-gradient(135deg, rgba(14,10,28,0.7) 0%, rgba(10,14,20,0.7) 100%)',
-    borderColor: 'rgba(120,100,220,0.1)',
+    gradient: NAVY_GRAD(0.65),
+    borderColor: BLUE_BORDER,
     tags: [
       'Experimental Design', 'Scientific Writing', 'Bias Analysis',
       'Statistical Analysis', 'Data Visualization', 'Academic Presentation',
@@ -118,13 +126,21 @@ const skillGroups = [
 const education = [
   {
     school: 'University of South Florida',
+    degree: 'Master of Science, Artificial Intelligence',
+    period: 'May 2026 – May 2027',
+    highlight: true,
+  },
+  {
+    school: 'University of South Florida',
     degree: "Bachelor's Degree, Computer Science",
     period: 'Aug 2024 – May 2026',
+    highlight: false,
   },
   {
     school: 'Hillsborough Community College',
     degree: 'Associate of Arts, Computer Science',
     period: 'Jan 2022 – May 2024',
+    highlight: false,
   },
 ];
 
@@ -137,7 +153,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
     <div className="flex items-center gap-3 mb-8">
       <p
         className="text-xs font-semibold tracking-[0.28em] uppercase whitespace-nowrap"
-        style={{ color: '#6878b0' }}
+        style={{ color: BLUE_LABEL }}
       >
         {children}
       </p>
@@ -158,10 +174,7 @@ export default function ProfileContent() {
           <SectionLabel>About</SectionLabel>
           <div
             className="card p-6 md:p-8"
-            style={{
-              background: 'linear-gradient(135deg, rgba(16,20,38,0.55) 0%, rgba(20,14,32,0.55) 100%)',
-              border: '1px solid rgba(90,110,220,0.1)',
-            }}
+            style={{ background: NAVY_GRAD(0.55), border: `1px solid ${BLUE_BORDER}` }}
           >
             <p className="text-base md:text-lg leading-relaxed mb-4 font-light" style={{ color: 'var(--text-secondary)' }}>
               I build and study systems at the intersection of{' '}
@@ -190,7 +203,7 @@ export default function ProfileContent() {
                     className="absolute -left-[21px] top-[18px] w-2.5 h-2.5 rounded-full ring-2 ring-[var(--bg)]"
                     style={{
                       background: ri === 0
-                        ? 'linear-gradient(135deg, #6878b0, #9878b8)'
+                        ? `linear-gradient(135deg, ${BLUE_MID}, ${BLUE_LIGHT})`
                         : 'var(--border-bright)',
                     }}
                   />
@@ -201,7 +214,7 @@ export default function ProfileContent() {
                           {role.title}
                         </p>
                         {role.supervisor && (
-                          <p className="text-xs mt-0.5" style={{ color: '#7888b8' }}>
+                          <p className="text-xs mt-0.5" style={{ color: BLUE_MID }}>
                             {role.supervisor}
                           </p>
                         )}
@@ -244,7 +257,7 @@ export default function ProfileContent() {
               >
                 <p
                   className="text-[10px] tracking-widest uppercase mb-3 font-semibold"
-                  style={{ color: '#6878b0' }}
+                  style={{ color: BLUE_LABEL }}
                 >
                   {group.label}
                 </p>
@@ -264,13 +277,24 @@ export default function ProfileContent() {
           <div className="space-y-4">
             {education.map((ed) => (
               <div
-                key={ed.school}
+                key={ed.degree}
                 className="card card-hover p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1"
+                style={ed.highlight ? { background: NAVY_GRAD(0.5), border: `1px solid ${BLUE_BORDER}` } : {}}
               >
                 <div>
-                  <p className="text-sm font-semibold" style={{ color: 'var(--text)' }}>
-                    {ed.school}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-semibold" style={{ color: 'var(--text)' }}>
+                      {ed.school}
+                    </p>
+                    {ed.highlight && (
+                      <span
+                        className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
+                        style={{ background: 'rgba(50,120,220,0.15)', border: `1px solid ${BLUE_BORDER}`, color: BLUE_LIGHT }}
+                      >
+                        Current
+                      </span>
+                    )}
+                  </div>
                   <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>
                     {ed.degree}
                   </p>
@@ -321,7 +345,7 @@ export default function ProfileContent() {
                   size={14}
                   strokeWidth={1.5}
                   className="opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ color: '#7888b8' }}
+                  style={{ color: BLUE_LIGHT }}
                 />
               </Link>
             ))}

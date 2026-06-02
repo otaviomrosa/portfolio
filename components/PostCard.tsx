@@ -8,10 +8,11 @@ import type { PostMeta } from '@/lib/posts';
 import { formatDate } from '@/lib/utils';
 
 // Gradient backgrounds when no image is provided — keyed by index mod length
+// All three variants use the metallic navy blue palette (#161b2e family)
 const FALLBACK_GRADIENTS = [
   'linear-gradient(135deg, #0d1117 0%, #161b2e 50%, #0d1117 100%)',
-  'linear-gradient(135deg, #0d1117 0%, #1a1226 50%, #0d1117 100%)',
-  'linear-gradient(135deg, #0d1117 0%, #0f1a1a 50%, #0d1117 100%)',
+  'linear-gradient(135deg, #0a0e1c 0%, #0e1830 50%, #0a0e1c 100%)',
+  'linear-gradient(135deg, #0d1117 0%, #101c34 50%, #0d1117 100%)',
 ];
 
 interface Props {
@@ -71,7 +72,7 @@ export default function PostCard({ post, index }: Props) {
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
               style={{
                 background:
-                  'linear-gradient(135deg, transparent 40%, rgba(110,231,247,0.06) 60%, transparent 80%)',
+                  'linear-gradient(135deg, transparent 40%, rgba(80,160,240,0.07) 60%, transparent 80%)',
               }}
             />
           </div>
