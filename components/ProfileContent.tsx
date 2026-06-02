@@ -1,13 +1,11 @@
 import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
-// ─── Design tokens (metallic blue palette) ─────────────────────────────────
-const BLUE_LIGHT  = '#90c8f4';   // shiny highlight
-const BLUE_MID    = '#4a80c0';   // labels, supervisors
-const BLUE_LABEL  = '#5888c8';   // section labels
-const NAVY_GRAD   = (a = 0.6) =>
-  `linear-gradient(135deg, rgba(13,17,46,${a}) 0%, rgba(22,27,46,${a}) 100%)`;
-const BLUE_BORDER = 'rgba(50,100,200,0.14)';
+// ─── Design tokens (metallic blue — lighter, accent-only) ──────────────────
+const BLUE_LIGHT  = '#b8d8f8';   // shiny highlight — lighter
+const BLUE_MID    = '#7aa8d8';   // labels, supervisors — lighter
+const BLUE_LABEL  = '#7aa8d8';   // section labels
+const BLUE_BORDER = 'rgba(80,140,240,0.1)';
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 
@@ -81,11 +79,11 @@ const experiences = [
   },
 ];
 
-const skillGroups = [
+const skillGroups: { label: string; gradient: string | null; borderColor: string | null; tags: string[] }[] = [
   {
     label: 'AI / ML Research',
-    gradient: NAVY_GRAD(0.7),
-    borderColor: BLUE_BORDER,
+    gradient: null,
+    borderColor: null,
     tags: [
       'PyTorch', 'Computer Vision', 'Generative Models', 'Diffusion Models',
       'LLMs', 'Transformers', 'Fine-tuning', 'NLP',
@@ -95,8 +93,8 @@ const skillGroups = [
   },
   {
     label: 'Systems & Infrastructure',
-    gradient: 'linear-gradient(135deg, rgba(10,12,20,0.7) 0%, rgba(12,15,25,0.7) 100%)',
-    borderColor: 'rgba(255,255,255,0.08)',
+    gradient: null,
+    borderColor: null,
     tags: [
       'Python', 'ROS 2', 'NVIDIA Jetson', 'CUDA',
       'Edge Deployment', 'WebRTC', 'Docker', 'Linux/Unix',
@@ -105,8 +103,8 @@ const skillGroups = [
   },
   {
     label: 'Web & Software',
-    gradient: 'linear-gradient(135deg, rgba(10,12,20,0.7) 0%, rgba(12,15,25,0.7) 100%)',
-    borderColor: 'rgba(255,255,255,0.08)',
+    gradient: null,
+    borderColor: null,
     tags: [
       'Angular', 'TypeScript', 'React', 'FastAPI',
       'REST APIs', 'SQL', 'PostgreSQL', 'Git',
@@ -114,8 +112,8 @@ const skillGroups = [
   },
   {
     label: 'Research Methods',
-    gradient: NAVY_GRAD(0.65),
-    borderColor: BLUE_BORDER,
+    gradient: null,
+    borderColor: null,
     tags: [
       'Experimental Design', 'Scientific Writing', 'Bias Analysis',
       'Statistical Analysis', 'Data Visualization', 'Academic Presentation',
@@ -172,10 +170,7 @@ export default function ProfileContent() {
         {/* ── About ── */}
         <section className="pt-20 pb-16">
           <SectionLabel>About</SectionLabel>
-          <div
-            className="card p-6 md:p-8"
-            style={{ background: NAVY_GRAD(0.55), border: `1px solid ${BLUE_BORDER}` }}
-          >
+          <div className="card p-6 md:p-8">
             <p className="text-base md:text-lg leading-relaxed mb-4 font-light" style={{ color: 'var(--text-secondary)' }}>
               I build and study systems at the intersection of{' '}
               <span style={{ color: 'var(--text)' }}>Computer Vision</span> and{' '}
@@ -250,11 +245,7 @@ export default function ProfileContent() {
           <SectionLabel>Skills &amp; Stack</SectionLabel>
           <div className="space-y-4">
             {skillGroups.map((group) => (
-              <div
-                key={group.label}
-                className="card p-5"
-                style={{ background: group.gradient, border: `1px solid ${group.borderColor}` }}
-              >
+              <div key={group.label} className="card p-5">
                 <p
                   className="text-[10px] tracking-widest uppercase mb-3 font-semibold"
                   style={{ color: BLUE_LABEL }}
@@ -279,7 +270,7 @@ export default function ProfileContent() {
               <div
                 key={ed.degree}
                 className="card card-hover p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1"
-                style={ed.highlight ? { background: NAVY_GRAD(0.5), border: `1px solid ${BLUE_BORDER}` } : {}}
+                style={ed.highlight ? { border: `1px solid ${BLUE_BORDER}` } : {}}
               >
                 <div>
                   <div className="flex items-center gap-2">
