@@ -81,7 +81,7 @@ export default function HeroSection() {
           className="text-base md:text-lg mb-9 max-w-lg mx-auto font-light leading-relaxed"
           style={{ color: 'var(--text-secondary)' }}
         >
-          Investigating where neural networks fail to distinguish the real from the synthetic.
+          Targeting AI/ML Engineering.
         </motion.p>
 
         {/* Stats — shiny light blue */}

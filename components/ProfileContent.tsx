@@ -218,16 +218,21 @@ export default function ProfileContent() {
             {/* About */}
             <section>
               <p className="text-base md:text-lg leading-relaxed font-light mb-4" style={{ color: 'var(--text-secondary)' }}>
-                I build and study systems at the intersection of{' '}
-                <span style={{ color: 'var(--text)' }}>Computer Vision</span> and{' '}
-                <span style={{ color: 'var(--text)' }}>Generative AI</span>. My thesis tackles a deceptively
-                hard problem: can a neural network reliably tell a real photograph from an AI-generated one?
+                I work on{' '}
+                <span style={{ color: 'var(--text)' }}>computer vision</span>,{' '}
+                <span style={{ color: 'var(--text)' }}>generative AI</span>,{' '}and{' '}
+                <span style={{ color: 'var(--text)' }}>synthetic media detection</span>.
+              </p>
+              <p className="text-base md:text-lg leading-relaxed font-light mb-4" style={{ color: 'var(--text-secondary)' }}>
+                My work has included LLM bias research, robotic vision systems, and edge AI deployment.
+              </p>
+              <p className="text-base md:text-lg leading-relaxed font-light mb-4" style={{ color: 'var(--text-secondary)' }}>
+                I'm looking for AI/ML Engineering roles where research depth meets production systems.
               </p>
               <p className="text-base md:text-lg leading-relaxed font-light" style={{ color: 'var(--text-secondary)' }}>
-                Along the way I've investigated LLM bias at scale, built real-time vision pipelines for a
-                quadruped robot, and managed edge deployments on NVIDIA Jetson hardware. I'm looking for
-                AI/ML Engineering roles where research depth meets production systems.
+                Previously at <span style={{ color: 'var(--text)' }}>ClearSet.AI</span>.
               </p>
+
             </section>
 
             {/* Experience */}
