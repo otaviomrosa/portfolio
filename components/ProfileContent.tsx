@@ -29,7 +29,7 @@ const experiences = [
       },
       {
         title: 'Undergraduate Researcher — RARE Lab',
-        supervisor: '',
+        supervisor: 'Dr. Zhao Han',
         period: 'Nov 2025 – Apr 2026',
         bullets: [
           'Built high-speed data acquisition pipelines for the Unitree Go2 quadruped, targeting human-robot interaction and computer vision datasets.',
@@ -71,34 +71,47 @@ const experiences = [
       },
     ],
   },
-  {
-    org: 'Hillsborough College',
-    orgShort: 'Hillsborough College',
-    roles: [
-      {
-        title: 'Resident Assistant',
-        supervisor: '',
-        period: 'Aug 2022 – May 2024',
-        bullets: [
-          'Oversaw a residential community of 400+ students, providing crisis management and conflict mediation.',
-        ],
-      },
-    ],
-  },
 ];
 
 const skillGroups = [
   {
-    label: 'AI / ML',
-    tags: ['PyTorch', 'Computer Vision', 'Generative Models', 'LLMs', 'NLP', 'Mechanistic Interpretability'],
+    label: 'AI / ML Research',
+    gradient: 'linear-gradient(135deg, rgba(12,16,38,0.7) 0%, rgba(14,10,30,0.7) 100%)',
+    borderColor: 'rgba(90,110,220,0.12)',
+    tags: [
+      'PyTorch', 'Computer Vision', 'Generative Models', 'Diffusion Models',
+      'LLMs', 'Transformers', 'Fine-tuning', 'NLP',
+      'Mechanistic Interpretability', 'Feature Attribution', 'Hugging Face',
+      'OpenCV', 'NumPy', 'scikit-learn',
+    ],
   },
   {
-    label: 'Systems',
-    tags: ['ROS 2', 'NVIDIA Jetson', 'Edge Deployment', 'WebRTC', 'Python', 'C# .NET'],
+    label: 'Systems & Infrastructure',
+    gradient: 'linear-gradient(135deg, rgba(10,14,20,0.7) 0%, rgba(8,12,18,0.7) 100%)',
+    borderColor: 'rgba(255,255,255,0.08)',
+    tags: [
+      'Python', 'ROS 2', 'NVIDIA Jetson', 'CUDA',
+      'Edge Deployment', 'WebRTC', 'Docker', 'Linux/Unix',
+      'SSH', 'UDP/TCP', 'C# .NET',
+    ],
   },
   {
-    label: 'Web & Data',
-    tags: ['Angular', 'TypeScript', 'React', 'SQL', 'Data Visualization', 'Statistical Analysis'],
+    label: 'Web & Software',
+    gradient: 'linear-gradient(135deg, rgba(10,14,20,0.7) 0%, rgba(8,12,18,0.7) 100%)',
+    borderColor: 'rgba(255,255,255,0.08)',
+    tags: [
+      'Angular', 'TypeScript', 'React', 'FastAPI',
+      'REST APIs', 'SQL', 'PostgreSQL', 'Git',
+    ],
+  },
+  {
+    label: 'Research Methods',
+    gradient: 'linear-gradient(135deg, rgba(14,10,28,0.7) 0%, rgba(10,14,20,0.7) 100%)',
+    borderColor: 'rgba(120,100,220,0.1)',
+    tags: [
+      'Experimental Design', 'Scientific Writing', 'Bias Analysis',
+      'Statistical Analysis', 'Data Visualization', 'Academic Presentation',
+    ],
   },
 ];
 
@@ -117,14 +130,14 @@ const education = [
 
 const certifications = ['UR2PhD Undergraduate Research Training Course Participant'];
 
-// ─── Components ────────────────────────────────────────────────────────────
+// ─── Section label ──────────────────────────────────────────────────────────
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3 mb-8">
       <p
-        className="text-[10px] font-semibold tracking-[0.3em] uppercase"
-        style={{ color: 'var(--text-muted)' }}
+        className="text-xs font-semibold tracking-[0.28em] uppercase whitespace-nowrap"
+        style={{ color: '#6878b0' }}
       >
         {children}
       </p>
@@ -137,24 +150,30 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 export default function ProfileContent() {
   return (
-    <main
-      className="relative z-10 pb-24"
-      style={{ background: 'var(--bg)' }}
-    >
+    <main className="relative z-10 pb-24" style={{ background: 'var(--bg)' }}>
       <div className="section-container">
+
         {/* ── About ── */}
         <section className="pt-20 pb-16">
           <SectionLabel>About</SectionLabel>
-          <div className="card p-6 md:p-8">
-            <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
-              I build and study systems at the intersection of <span style={{ color: 'var(--text)' }}>Computer Vision</span> and{' '}
-              <span style={{ color: 'var(--text)' }}>Generative AI</span>. My thesis research tackles a deceptively hard problem:
-              can a neural network tell the difference between a real photo and an AI-generated one?
+          <div
+            className="card p-6 md:p-8"
+            style={{
+              background: 'linear-gradient(135deg, rgba(16,20,38,0.55) 0%, rgba(20,14,32,0.55) 100%)',
+              border: '1px solid rgba(90,110,220,0.1)',
+            }}
+          >
+            <p className="text-base md:text-lg leading-relaxed mb-4 font-light" style={{ color: 'var(--text-secondary)' }}>
+              I build and study systems at the intersection of{' '}
+              <span style={{ color: 'var(--text)' }}>Computer Vision</span> and{' '}
+              <span style={{ color: 'var(--text)' }}>Generative AI</span>. My thesis research tackles a deceptively
+              hard problem: can a neural network tell the difference between a real photo and an AI-generated one?
             </p>
-            <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              Along the way I've investigated LLM bias at scale, built real-time vision pipelines for a quadruped robot, and
-              managed edge deployments on NVIDIA Jetson hardware. That mix of research depth and engineering experience is what
-              I bring to <span style={{ color: 'var(--text)' }}>AI/ML Engineering</span>.
+            <p className="text-base md:text-lg leading-relaxed font-light" style={{ color: 'var(--text-secondary)' }}>
+              Along the way I've investigated LLM bias at scale, built real-time vision pipelines for a quadruped
+              robot, and managed edge deployments on NVIDIA Jetson hardware. That mix of research depth and
+              engineering experience is what I bring to{' '}
+              <span style={{ color: 'var(--text)' }}>AI/ML Engineering</span>.
             </p>
           </div>
         </section>
@@ -169,7 +188,11 @@ export default function ProfileContent() {
                   {/* Timeline dot */}
                   <div
                     className="absolute -left-[21px] top-[18px] w-2.5 h-2.5 rounded-full ring-2 ring-[var(--bg)]"
-                    style={{ background: ri === 0 ? 'var(--text)' : 'var(--border-bright)' }}
+                    style={{
+                      background: ri === 0
+                        ? 'linear-gradient(135deg, #6878b0, #9878b8)'
+                        : 'var(--border-bright)',
+                    }}
                   />
                   <div className="card card-hover p-5 md:p-6">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
@@ -178,7 +201,7 @@ export default function ProfileContent() {
                           {role.title}
                         </p>
                         {role.supervisor && (
-                          <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>
+                          <p className="text-xs mt-0.5" style={{ color: '#7888b8' }}>
                             {role.supervisor}
                           </p>
                         )}
@@ -186,10 +209,7 @@ export default function ProfileContent() {
                           {org.orgShort}
                         </p>
                       </div>
-                      <span
-                        className="text-xs shrink-0 mt-0.5"
-                        style={{ color: 'var(--text-muted)' }}
-                      >
+                      <span className="text-xs shrink-0 mt-0.5" style={{ color: 'var(--text-muted)' }}>
                         {role.period}
                       </span>
                     </div>
@@ -215,12 +235,16 @@ export default function ProfileContent() {
         {/* ── Skills ── */}
         <section className="pb-16">
           <SectionLabel>Skills &amp; Stack</SectionLabel>
-          <div className="space-y-5">
+          <div className="space-y-4">
             {skillGroups.map((group) => (
-              <div key={group.label} className="card p-5">
+              <div
+                key={group.label}
+                className="card p-5"
+                style={{ background: group.gradient, border: `1px solid ${group.borderColor}` }}
+              >
                 <p
-                  className="text-[10px] tracking-widest uppercase mb-3 font-medium"
-                  style={{ color: 'var(--text-muted)' }}
+                  className="text-[10px] tracking-widest uppercase mb-3 font-semibold"
+                  style={{ color: '#6878b0' }}
                 >
                   {group.label}
                 </p>
@@ -239,7 +263,10 @@ export default function ProfileContent() {
           <SectionLabel>Education</SectionLabel>
           <div className="space-y-4">
             {education.map((ed) => (
-              <div key={ed.school} className="card card-hover p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+              <div
+                key={ed.school}
+                className="card card-hover p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1"
+              >
                 <div>
                   <p className="text-sm font-semibold" style={{ color: 'var(--text)' }}>
                     {ed.school}
@@ -294,12 +321,13 @@ export default function ProfileContent() {
                   size={14}
                   strokeWidth={1.5}
                   className="opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ color: 'var(--accent)' }}
+                  style={{ color: '#7888b8' }}
                 />
               </Link>
             ))}
           </div>
         </section>
+
       </div>
     </main>
   );

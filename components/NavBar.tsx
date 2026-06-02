@@ -19,12 +19,21 @@ export default function NavBar() {
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={{
-        background: scrolled ? 'rgba(8,8,16,0.82)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
-      }}
+      style={
+        scrolled
+          ? {
+              background: 'linear-gradient(180deg, rgba(10,10,14,0.93) 0%, rgba(8,8,12,0.93) 100%)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              borderBottom: '1px solid rgba(90,110,220,0.1)',
+            }
+          : {
+              background: 'transparent',
+              backdropFilter: 'none',
+              WebkitBackdropFilter: 'none',
+              borderBottom: '1px solid transparent',
+            }
+      }
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Monogram */}
@@ -32,9 +41,9 @@ export default function NavBar() {
           <div
             className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold tracking-wider transition-all duration-200"
             style={{
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border)',
-              color: 'var(--accent)',
+              background: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(100,120,230,0.18)',
+              color: '#8898cc',
             }}
           >
             OR
@@ -44,7 +53,7 @@ export default function NavBar() {
         {/* Pill toggle */}
         <div
           className="flex items-center gap-0.5 p-1 rounded-full"
-          style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid var(--border)' }}
+          style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
         >
           <NavPill href="/" active={!isLog}>Profile</NavPill>
           <NavPill href="/log" active={isLog}>Log</NavPill>
