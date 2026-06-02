@@ -61,16 +61,7 @@ export default function HeroSection() {
         >
           Otavio
           <br />
-          <span
-            style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.5) 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
-            Rosa
-          </span>
+          Rosa
         </motion.h1>
 
         <motion.p

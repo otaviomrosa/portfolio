@@ -58,7 +58,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Tag chip — metallic blue tint */
+/* Tag chip */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -66,9 +66,9 @@ body {
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 500;
-  background: rgba(50, 100, 200, 0.07);
-  border: 1px solid rgba(50, 100, 200, 0.16);
-  color: #6898c8;
+  background: rgba(80, 140, 240, 0.06);
+  border: 1px solid rgba(80, 140, 240, 0.13);
+  color: #8ab8e0;
   letter-spacing: 0.02em;
 }
 
@@ -90,13 +90,13 @@ body {
   top: 6px;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(to bottom, rgba(50, 100, 200, 0.25), transparent);
+  background: linear-gradient(to bottom, rgba(80, 140, 240, 0.18), transparent);
 }
 
 /* Gradient divider */
 .gradient-divider {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(50,100,200,0.2), transparent);
+  background: linear-gradient(to right, transparent, rgba(80,140,240,0.14), transparent);
 }
 
 /* Hover link utilities (usable in server components) */
@@ -110,4 +110,4 @@ body {
   color: var(--text-muted);
   transition: color 0.2s;
 }
-.link-accent:hover { color: var(--blue-light); }
+.link-accent:hover { color: #b8d8f8; }

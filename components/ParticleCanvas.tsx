@@ -64,14 +64,13 @@ export default function ParticleCanvas({ className }: Props) {
     resize();
     window.addEventListener('resize', resize);
 
+    // Listen on document so dots react even when the cursor is over text/UI layers
     const onMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
     };
-    const onMouseLeave = () => { mouseRef.current = { x: -9999, y: -9999 }; };
 
-    canvas.addEventListener('mousemove', onMouseMove);
-    canvas.addEventListener('mouseleave', onMouseLeave);
+    document.addEventListener('mousemove', onMouseMove);
 
     const draw = () => {
       const w = canvas.offsetWidth;
@@ -143,8 +142,7 @@ export default function ParticleCanvas({ className }: Props) {
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener('resize', resize);
-      canvas.removeEventListener('mousemove', onMouseMove);
-      canvas.removeEventListener('mouseleave', onMouseLeave);
+      document.removeEventListener('mousemove', onMouseMove);
     };
   }, [buildGrid]);
 
