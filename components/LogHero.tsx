@@ -10,9 +10,9 @@ export default function LogHero() {
       style={{ height: '38vh', minHeight: '220px' }}
     >
       {/* Particle canvas */}
-      <div className="absolute inset-0">
+      {/* <div className="absolute inset-0">
         <ParticleCanvas className="w-full h-full" />
-      </div>
+      </div> */}
 
       {/* Overlays */}
       <div
@@ -34,7 +34,7 @@ export default function LogHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="font-bold tracking-tight mb-3"
-          style={{ color: 'var(--text)', fontFamily: 'var(--font-space)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', letterSpacing: '-0.03em' }}
+          style={{ color: 'var(--text)', fontFamily: 'var(--font-space)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', letterSpacing: '-0.02em' }}
         >
           Study Log
         </motion.h1>

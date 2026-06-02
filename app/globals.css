@@ -11,11 +11,11 @@
   --text: #f0f0f0;
   --text-secondary: #b8b8b8;
   --text-muted: #909090;
-  /* Desaturated teal/slate palette */
-  --blue-light: #8ecad4;       /* muted teal for highlights */
-  --blue-mid: #5a9aaa;         /* slate-teal for labels / supervisors */
-  --blue-deep: #0f1e22;        /* deep teal for gradient backgrounds */
-  --blue-border: rgba(60, 140, 160, 0.14);
+  /* Monochrome palette */
+  --blue-light: #e8e8e8;       /* near-white for highlights */
+  --blue-mid: #909090;         /* mid-gray for labels / supervisors */
+  --blue-deep: #111111;        /* dark surface */
+  --blue-border: rgba(255, 255, 255, 0.1);
 }
 
 * {
@@ -30,8 +30,8 @@ body {
   background-color: var(--bg);
   /* Subtle ambient blobs give the glass cards something to blur against */
   background-image:
-    radial-gradient(ellipse 70% 50% at 15% 30%, rgba(10, 24, 28, 0.55) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 45% at 85% 75%, rgba(8, 20, 24, 0.45) 0%, transparent 65%);
+    radial-gradient(ellipse 70% 50% at 15% 30%, rgba(20, 20, 20, 0.55) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 45% at 85% 75%, rgba(16, 16, 16, 0.45) 0%, transparent 65%);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -75,7 +75,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Tag chip — glass pill */
+/* Tag chip */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -83,12 +83,9 @@ body {
   border-radius: 999px;
   font-size: 0.8125rem;
   font-weight: 500;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  color: #7abec8;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #d0d0d0;
   letter-spacing: 0.02em;
 }
 
@@ -110,13 +107,13 @@ body {
   top: 6px;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(to bottom, rgba(60, 140, 160, 0.18), transparent);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08), transparent);
 }
 
 /* Gradient divider */
 .gradient-divider {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(60,140,160,0.14), transparent);
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.07), transparent);
 }
 
 /* Hover link utilities (usable in server components) */

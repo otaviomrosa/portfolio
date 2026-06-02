@@ -22,10 +22,10 @@ export default function NavBar() {
       style={
         scrolled
           ? {
-              background: 'linear-gradient(180deg, rgba(10,11,18,0.94) 0%, rgba(9,10,16,0.94) 100%)',
+              background: 'rgba(10,10,10,0.92)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
-              borderBottom: '1px solid rgba(60,140,160,0.1)',
+              borderBottom: '1px solid rgba(255,255,255,0.06)',
             }
           : {
               background: 'transparent',
