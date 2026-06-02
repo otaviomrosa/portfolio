@@ -56,12 +56,16 @@ export default function HeroSection() {
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto select-none">
         <motion.h1
           {...fadeUp(0.2)}
-          className="font-bold leading-[0.92] tracking-tight mb-5"
-          style={{ fontSize: 'clamp(3.5rem, 10vw, 7.5rem)', color: 'var(--text)' }}
+          className="leading-tight mb-5 whitespace-nowrap"
+          style={{
+            fontSize: 'clamp(3rem, 7.5vw, 6rem)',
+            fontFamily: 'var(--font-space)',
+            fontWeight: 700,
+            letterSpacing: '-0.03em',
+            color: 'var(--text)',
+          }}
         >
-          Otavio
-          <br />
-          Rosa
+          Otavio Rosa
         </motion.h1>
 
         <motion.p
@@ -69,7 +73,7 @@ export default function HeroSection() {
           className="text-base md:text-lg mb-3 font-light"
           style={{ color: 'var(--text-secondary)' }}
         >
-          MS AI @ USF &nbsp;·&nbsp; Computer Vision &amp; Generative AI Research
+          MS CS @ USF &nbsp;·&nbsp; Computer Vision &amp; Generative AI Research
         </motion.p>
 
         <motion.p
@@ -89,7 +93,7 @@ export default function HeroSection() {
             <div key={s.label} className="text-center">
               <p
                 className="text-lg md:text-xl font-semibold"
-                style={{ color: '#90c8f4' }}
+                style={{ color: '#8ecad4' }}
               >
                 {s.value}
               </p>
@@ -111,7 +115,7 @@ export default function HeroSection() {
               aria-label={label}
               className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 card card-hover"
               style={{ color: 'var(--text-secondary)' }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#90c8f4')}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#8ecad4')}
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)')}
             >
               <Icon size={17} strokeWidth={1.7} />

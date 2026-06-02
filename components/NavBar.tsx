@@ -25,7 +25,7 @@ export default function NavBar() {
               background: 'linear-gradient(180deg, rgba(10,11,18,0.94) 0%, rgba(9,10,16,0.94) 100%)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
-              borderBottom: '1px solid rgba(50,100,200,0.14)',
+              borderBottom: '1px solid rgba(60,140,160,0.1)',
             }
           : {
               background: 'transparent',
@@ -35,25 +35,17 @@ export default function NavBar() {
             }
       }
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Monogram — metallic blue */}
-        <Link href="/" className="group">
-          <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold tracking-wider transition-all duration-200"
-            style={{
-              background: 'linear-gradient(135deg, rgba(13,17,46,0.9) 0%, rgba(22,27,46,0.9) 100%)',
-              border: '1px solid rgba(50,120,220,0.22)',
-              color: '#90c8f4',
-            }}
-          >
-            OR
-          </div>
-        </Link>
-
-        {/* Pill toggle */}
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-center">
+        {/* Pill toggle — glass container */}
         <div
           className="flex items-center gap-0.5 p-1 rounded-full"
-          style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+          style={{
+            background: 'rgba(255,255,255,0.05)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.08)',
+          }}
         >
           <NavPill href="/" active={!isLog}>Profile</NavPill>
           <NavPill href="/log" active={isLog}>Log</NavPill>

@@ -95,38 +95,39 @@ export default function ParticleCanvas({ className }: Props) {
         // Per-particle star twinkle — each dot breathes at its own rate
         const twinkle = Math.sin(t * p.twinkleSpeed + p.twinklePhase) * p.twinkleMag;
 
-        // Mouse influence — larger radius, stronger boost
+        // Mouse influence — subtle, only visible up close
         const dx = p.baseX - mx;
         const dy = p.baseY - my;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const mouseBoost = Math.max(0, 1 - dist / 170) * 0.85;
+        const mouseBoost = Math.max(0, 1 - dist / 120) * 0.28;
 
         const brightness = Math.min(1, Math.max(0, wave + twinkle + mouseBoost));
 
         // Fabric displacement
-        const disp = (brightness - 0.5) * 5;
+        const disp = (brightness - 0.5) * 4;
         const px = p.baseX + Math.sin(p.phase + t * 0.75) * disp;
         const py = p.baseY + Math.cos(p.phase * 0.8 + t * 0.55) * disp;
 
-        const radius = p.size * (0.35 + brightness * 1.4);
-        const opacity = Math.pow(brightness, 1.8) * 0.9;
+        const radius = p.size * (0.3 + brightness * 1.1);
+        // Higher exponent = fewer bright dots, more are near-invisible → less busy
+        const opacity = Math.pow(brightness, 2.4) * 0.65;
 
         if (opacity < 0.015) continue;
 
-        // Core dot — pure white, no tint
+        // Slightly silvery-gray rather than pure white — less harsh
         ctx.beginPath();
         ctx.arc(px, py, radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${opacity.toFixed(3)})`;
+        ctx.fillStyle = `rgba(210,218,228,${opacity.toFixed(3)})`;
         ctx.fill();
 
-        // White glow on bright peaks; even larger when mouse is near
-        if (brightness > 0.62) {
-          const extra = brightness - 0.62;
-          const glowR = radius * (4 + mouseBoost * 5);
-          const glowA = extra * 0.42;
+        // Subtle glow only on the very brightest dots
+        if (brightness > 0.80) {
+          const extra = brightness - 0.80;
+          const glowR = radius * (2.5 + mouseBoost * 2);
+          const glowA = extra * 0.28;
           const grad = ctx.createRadialGradient(px, py, 0, px, py, glowR);
-          grad.addColorStop(0, `rgba(255,255,255,${glowA.toFixed(3)})`);
-          grad.addColorStop(1, 'rgba(255,255,255,0)');
+          grad.addColorStop(0, `rgba(220,232,248,${glowA.toFixed(3)})`);
+          grad.addColorStop(1, 'rgba(220,232,248,0)');
           ctx.beginPath();
           ctx.arc(px, py, glowR, 0, Math.PI * 2);
           ctx.fillStyle = grad;
