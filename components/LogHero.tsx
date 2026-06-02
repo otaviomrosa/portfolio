@@ -33,8 +33,8 @@ export default function LogHero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold tracking-tight mb-3"
-          style={{ color: 'var(--text)' }}
+          className="font-bold tracking-tight mb-3"
+          style={{ color: 'var(--text)', fontFamily: 'var(--font-space)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', letterSpacing: '-0.03em' }}
         >
           Study Log
         </motion.h1>
