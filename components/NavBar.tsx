@@ -27,13 +27,10 @@ export default function NavBar() {
       }}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Monogram / wordmark */}
-        <Link
-          href="/"
-          className="flex items-center gap-2.5 group"
-        >
+        {/* Monogram */}
+        <Link href="/" className="group">
           <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold tracking-wider transition-all duration-200 group-hover:border-[var(--border-bright)]"
+            className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold tracking-wider transition-all duration-200"
             style={{
               background: 'var(--bg-card)',
               border: '1px solid var(--border)',
@@ -42,9 +39,6 @@ export default function NavBar() {
           >
             OR
           </div>
-          <span className="text-sm font-medium text-[var(--text-secondary)] group-hover:text-[var(--text)] transition-colors duration-200 hidden sm:block">
-            Otavio Rosa
-          </span>
         </Link>
 
         {/* Pill toggle */}

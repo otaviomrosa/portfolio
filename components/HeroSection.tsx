@@ -54,14 +54,6 @@ export default function HeroSection() {
 
       {/* Main content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto select-none">
-        <motion.p
-          {...fadeUp(0.1)}
-          className="text-xs tracking-[0.35em] uppercase mb-5 font-medium"
-          style={{ color: 'var(--accent)', opacity: 0.85 }}
-        >
-          otaviorosa.com
-        </motion.p>
-
         <motion.h1
           {...fadeUp(0.25)}
           className="font-bold leading-[0.92] tracking-tight mb-5"

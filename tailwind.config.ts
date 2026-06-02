@@ -13,9 +13,9 @@ const config: Config = {
         mono: ["var(--font-mono)", "monospace"],
       },
       colors: {
-        bg: "#080810",
-        surface: "#0d0d18",
-        accent: "#6ee7f7",
+        bg: "#0a0a0a",
+        surface: "#111111",
+        accent: "#d0d0d0",
       },
       animation: {
         "fade-up": "fadeUp 0.6s ease-out forwards",
@@ -31,14 +31,14 @@ const config: Config = {
         DEFAULT: {
           css: {
             color: "#b0b0c0",
-            a: { color: "#6ee7f7", "&:hover": { color: "#a5f3fc" } },
+            a: { color: "#d0d0d0", "&:hover": { color: "#ffffff" } },
             h1: { color: "#f0f0f0" },
             h2: { color: "#f0f0f0" },
             h3: { color: "#e0e0f0" },
             h4: { color: "#d0d0e0" },
             strong: { color: "#f0f0f0" },
-            code: { color: "#6ee7f7", backgroundColor: "rgba(110,231,247,0.08)", borderRadius: "4px", padding: "2px 5px" },
-            blockquote: { borderLeftColor: "rgba(110,231,247,0.3)", color: "#8888a0" },
+            code: { color: "#d0d0d0", backgroundColor: "rgba(255,255,255,0.07)", borderRadius: "4px", padding: "2px 5px" },
+            blockquote: { borderLeftColor: "rgba(255,255,255,0.2)", color: "#888888" },
             hr: { borderColor: "rgba(255,255,255,0.07)" },
             "pre code": { backgroundColor: "transparent", padding: "0" },
           },

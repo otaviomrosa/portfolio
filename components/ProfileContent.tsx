@@ -124,7 +124,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
     <div className="flex items-center gap-3 mb-8">
       <p
         className="text-[10px] font-semibold tracking-[0.3em] uppercase"
-        style={{ color: 'var(--accent)' }}
+        style={{ color: 'var(--text-muted)' }}
       >
         {children}
       </p>
@@ -169,7 +169,7 @@ export default function ProfileContent() {
                   {/* Timeline dot */}
                   <div
                     className="absolute -left-[21px] top-[18px] w-2.5 h-2.5 rounded-full ring-2 ring-[var(--bg)]"
-                    style={{ background: ri === 0 ? 'var(--accent)' : 'var(--border-bright)' }}
+                    style={{ background: ri === 0 ? 'var(--text)' : 'var(--border-bright)' }}
                   />
                   <div className="card card-hover p-5 md:p-6">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
@@ -178,7 +178,7 @@ export default function ProfileContent() {
                           {role.title}
                         </p>
                         {role.supervisor && (
-                          <p className="text-xs mt-0.5" style={{ color: 'var(--accent)' }}>
+                          <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>
                             {role.supervisor}
                           </p>
                         )}
