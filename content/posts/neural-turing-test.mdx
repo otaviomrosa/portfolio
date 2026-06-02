@@ -1,0 +1,32 @@
+---
+title: "The Neural Turing Test: Can Classifiers Detect AI-Generated Images?"
+date: "2026-05-20"
+excerpt: "My thesis research centers on a deceptively simple question — can a neural network tell a real photo from a synthetic one? Here's what I've found so far, and why it's harder than it sounds."
+tags: ["Computer Vision", "Generative AI", "Research"]
+---
+
+## The Problem
+
+There is a test that has quietly become one of the most important unsolved problems in computer vision: given an image, determine whether it was captured by a camera or synthesized by a generative model. I've been calling this the **Neural Turing Test** — borrowing the spirit of Turing's original imitation game, but replacing language with pixels.
+
+You might think this is easy. Modern detectors, trained on thousands of real and fake images, achieve high accuracy in controlled benchmarks. But that performance collapses the moment the generative model changes.
+
+## Why It Breaks Down
+
+The core issue is **distribution shift**. A classifier trained to detect images from Stable Diffusion v1.5 will struggle with outputs from DALL·E 3. Not because the images look similar — they don't — but because the *artifacts* the classifier learned to exploit are specific to the training distribution.
+
+This points to something deeper: most detectors aren't learning "what a real photo looks like." They're learning "what *this* generator's fingerprints look like." That's a fundamentally different problem.
+
+## My Approach
+
+My thesis research, conducted under Prof. Utkarsh Ojha, investigates this from a representational angle. Instead of asking *which* artifacts the model finds, we ask: **where does the classifier's discriminative ability actually live in the representation space?**
+
+We do this by probing classifiers with alternative image modalities — frequency domain representations, edge maps, depth estimates — to understand which visual channels carry generalization-enabling signal versus which carry generator-specific noise.
+
+Early findings suggest that frequency-domain cues are more transferable across generators than spatial ones, but the relationship is non-monotonic and model-dependent.
+
+## What's Next
+
+We're preparing a submission to NeurIPS. The paper formalizes the probing methodology and presents ablation results across six generator families. The broader takeaway — that generalization in this domain requires rethinking *what* we're asking classifiers to learn — has implications for deepfake detection and content authenticity at scale.
+
+I'll write more as the paper progresses. In the meantime, if you're working on related problems, I'd genuinely like to talk.

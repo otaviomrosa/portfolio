@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #080810;
+  --bg-surface: #0d0d1a;
+  --bg-card: rgba(255, 255, 255, 0.035);
+  --border: rgba(255, 255, 255, 0.07);
+  --border-bright: rgba(255, 255, 255, 0.13);
+  --text: #ebebf5;
+  --text-secondary: #8888a8;
+  --text-muted: #4a4a60;
+  --accent: #6ee7f7;
+  --accent-dim: rgba(110, 231, 247, 0.1);
+  --accent-glow: rgba(110, 231, 247, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+/* Glass card utility */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.card-hover {
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+}
+.card-hover:hover {
+  border-color: var(--border-bright);
+  background: rgba(255,255,255,0.055);
+  transform: translateY(-2px);
+}
+
+/* Accent glow text */
+.glow-text {
+  text-shadow: 0 0 30px rgba(110, 231, 247, 0.4);
+}
+
+/* Section wrapper */
+.section-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Timeline line */
+.timeline-line {
+  position: relative;
+}
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--border-bright), transparent);
+}
+
+/* Tag chip */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(110, 231, 247, 0.08);
+  border: 1px solid rgba(110, 231, 247, 0.18);
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+/* Gradient divider */
+.gradient-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-bright), transparent);
+}
+
+/* Hover link utilities (usable in server components) */
+.link-muted {
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.link-muted:hover { color: var(--text); }
+
+.link-accent {
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.link-accent:hover { color: var(--accent); }
