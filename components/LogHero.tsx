@@ -34,7 +34,7 @@ export default function LogHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-[10px] tracking-[0.35em] uppercase mb-2 font-medium"
-          style={{ color: 'var(--accent)' }}
+          style={{ color: 'var(--text-muted)' }}
         >
           Otavio Rosa
         </motion.p>
