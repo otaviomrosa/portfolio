@@ -1,0 +1,46 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import ParticleCanvas from './ParticleCanvas';
+
+export default function ProfileHero() {
+  return (
+    <section
+      className="relative flex items-end justify-center overflow-hidden"
+      style={{ height: '38vh', minHeight: '220px', background: 'var(--bg)' }}
+    >
+      {/* Particle canvas */}
+      <div className="absolute inset-0">
+        <ParticleCanvas className="w-full h-full" fadeBottom />
+      </div>
+
+      {/* Overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'linear-gradient(to bottom, rgba(10,10,10,0.35), transparent 40%, var(--bg) 100%)' }}
+      />
+
+      {/* Text */}
+      <div className="relative z-10 text-center pb-10 px-6">
+        <motion.h1
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="font-bold tracking-tight mb-3"
+          style={{ color: 'var(--text)', fontFamily: 'var(--font-space)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', letterSpacing: '-0.02em' }}
+        >
+          Otavio Rosa
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="text-base md:text-lg font-light leading-relaxed"
+          style={{ color: 'var(--text-secondary)' }}
+        >
+          MS CS · USF &nbsp;·&nbsp; Computer Vision &amp; Generative AI
+        </motion.p>
+      </div>
+    </section>
+  );
+}
