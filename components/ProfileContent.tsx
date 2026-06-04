@@ -154,16 +154,6 @@ export default function ProfileContent() {
           <aside className="mb-16 lg:mb-0">
             <div className="lg:sticky lg:top-24 space-y-8">
 
-              {/* Identity */}
-              <div>
-                <p className="text-base font-semibold leading-snug" style={{ color: 'var(--text)' }}>
-                  Otavio Rosa
-                </p>
-                <p className="text-sm mt-0.5 leading-snug" style={{ color: 'var(--text-muted)' }}>
-                  MS CS · USF
-                </p>
-              </div>
-
               {/* Stats */}
               <div className="space-y-3">
                 {[
