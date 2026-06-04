@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import ParticleCanvas from './ParticleCanvas';
-import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowDown, ArrowUpRight } from 'lucide-react';
 
 const socialLinks = [
   { icon: Github, label: 'GitHub', href: 'https://github.com/otaviomrosa' },
@@ -23,13 +23,22 @@ const fadeUp = (delay: number) => ({
   transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay },
 });
 
-export default function HeroSection() {
+interface Props {
+  latestPost?: { title: string; slug: string };
+}
+
+export default function HeroSection({ latestPost }: Props) {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ background: 'var(--bg)' }}>
-      {/* Particle canvas */}
-      <div className="absolute inset-x-0 top-0" style={{ height: '30vh', minHeight: '175px' }}>
+      {/* Particle canvas — full section */}
+      <div className="absolute inset-0">
         <ParticleCanvas className="w-full h-full" fadeBottom />
       </div>
+      {/* Linear fade */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'linear-gradient(to bottom, transparent 35%, var(--bg) 85%)' }}
+      />
 
       {/* Bottom fade */}
       <div
@@ -113,6 +122,29 @@ export default function HeroSection() {
             </Link>
           ))}
         </motion.div>
+
+        {/* Latest post teaser */}
+        {latestPost && (
+          <motion.div {...fadeUp(0.82)} className="mt-8 flex flex-col items-center gap-3">
+            <div className="h-px w-8" style={{ background: 'rgba(255,255,255,0.12)' }} />
+            <Link
+              href={`/log/${latestPost.slug}`}
+              className="group flex items-center gap-1.5 text-xs transition-colors duration-200"
+              style={{ color: 'var(--text-muted)' }}
+            >
+              <span>Latest:</span>
+              <span
+                className="transition-colors duration-200"
+                style={{ color: 'var(--text-secondary)' }}
+                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text)')}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)')}
+              >
+                {latestPost.title}
+              </span>
+              <ArrowUpRight size={11} strokeWidth={1.5} className="opacity-50 group-hover:opacity-100 transition-opacity" />
+            </Link>
+          </motion.div>
+        )}
       </div>
 
       {/* Scroll indicator */}

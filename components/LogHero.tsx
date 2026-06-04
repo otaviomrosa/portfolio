@@ -14,14 +14,7 @@ export default function LogHero() {
         <ParticleCanvas className="w-full h-full" fadeBottom />
       </div>
 
-      {/* Overlays */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 90% 60% at 50% 30%, transparent 20%, rgba(10,10,10,0.6) 100%)',
-        }}
-      />
+      {/* Overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'linear-gradient(to bottom, rgba(10,10,10,0.35), transparent 40%, var(--bg) 100%)' }}
