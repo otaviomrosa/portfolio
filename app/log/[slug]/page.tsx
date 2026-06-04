@@ -43,7 +43,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         ) : (
           <>
             <div className="absolute inset-0">
-              <ParticleCanvas className="w-full h-full" />
+              <ParticleCanvas className="w-full h-full" fadeBottom />
             </div>
             <div
               className="absolute inset-0"

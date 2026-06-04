@@ -14,9 +14,10 @@ interface Particle {
 
 interface Props {
   className?: string;
+  fadeBottom?: boolean;
 }
 
-export default function ParticleCanvas({ className }: Props) {
+export default function ParticleCanvas({ className, fadeBottom = false }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -9999, y: -9999 });
   const rafRef = useRef<number>(0);
@@ -110,7 +111,10 @@ export default function ParticleCanvas({ className }: Props) {
 
         const radius = p.size * (0.3 + brightness * 1.1);
         // Higher exponent = fewer bright dots, more are near-invisible → less busy
-        const opacity = Math.pow(brightness, 2.4) * 0.65;
+        const yFade = fadeBottom
+          ? (ny < 0.45 ? 1 : Math.max(0, Math.cos(((ny - 0.45) / 0.55) * Math.PI / 2)))
+          : 1;
+        const opacity = Math.pow(brightness, 2.4) * 0.65 * yFade;
 
         if (opacity < 0.015) continue;
 
