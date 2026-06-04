@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import ParticleCanvas from './ParticleCanvas';
@@ -28,30 +27,19 @@ export default function ProfileHero() {
       />
 
       <div className="relative z-10 text-center pb-14 px-6">
-        <motion.h1
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <h1
           className="font-semibold tracking-tight"
           style={{ color: 'var(--text)', fontFamily: 'var(--font-space)', fontSize: 'clamp(2.4rem, 4.5vw, 3.4rem)', letterSpacing: '-0.02em' }}
         >
           Otavio Rosa
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.12 }}
+        </h1>
+        <p
           className="text-base font-light mt-2"
           style={{ color: 'var(--text-secondary)' }}
         >
           MS CS · USF &nbsp;·&nbsp; Computer Vision &amp; Generative AI
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.22 }}
-          className="flex items-center justify-center gap-2 mt-6"
-        >
+        </p>
+        <div className="flex items-center justify-center gap-2 mt-6">
           {socialLinks.map(({ icon: Icon, label, href }) => (
             <Link
               key={label}
@@ -64,7 +52,7 @@ export default function ProfileHero() {
               {label}
             </Link>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
