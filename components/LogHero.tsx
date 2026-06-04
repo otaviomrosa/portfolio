@@ -10,9 +10,9 @@ export default function LogHero() {
       style={{ height: '38vh', minHeight: '220px' }}
     >
       {/* Particle canvas */}
-      {/* <div className="absolute inset-0">
+      <div className="absolute inset-0">
         <ParticleCanvas className="w-full h-full" />
-      </div> */}
+      </div>
 
       {/* Overlays */}
       <div

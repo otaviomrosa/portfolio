@@ -27,9 +27,9 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Particle canvas */}
-      {/* <div className="absolute inset-0">
+      <div className="absolute inset-0">
         <ParticleCanvas className="w-full h-full" />
-      </div> */}
+      </div>
 
       {/* Radial vignette */}
       <div
