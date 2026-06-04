@@ -17,7 +17,7 @@ export default function LogHero() {
       {/* Overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, rgba(10,10,10,0.35), transparent 40%, var(--bg) 100%)' }}
+        style={{ background: 'linear-gradient(to bottom, var(--hero-tint), transparent 40%, var(--bg) 100%)' }}
       />
 
       {/* Text */}

@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
+import OrcidIcon from './OrcidIcon';
 
-const HIGHLIGHT = '#ededfc';
-const LABEL = '#9898b8';
+const HIGHLIGHT = 'var(--text)';
+const LABEL = 'var(--text-muted)';
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 
@@ -135,7 +136,7 @@ function SectionHeading({ num, children }: { num: string; children: React.ReactN
       </span>
       <div
         className="flex-1 h-px"
-        style={{ background: 'linear-gradient(to right, rgba(255,255,255,0.07), transparent)' }}
+        style={{ background: 'linear-gradient(to right, var(--divider), transparent)' }}
       />
     </div>
   );
@@ -172,7 +173,7 @@ export default function ProfileContent() {
               </div>
 
               {/* Divider */}
-              <div className="h-px" style={{ background: 'rgba(255,255,255,0.07)' }} />
+              <div className="h-px" style={{ background: 'var(--divider)' }} />
 
               {/* Links */}
               <nav className="space-y-2">
@@ -180,6 +181,7 @@ export default function ProfileContent() {
                   { icon: Github, label: 'GitHub', href: 'https://github.com/otaviomrosa' },
                   { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/rosaotavio' },
                   { icon: Mail, label: 'Email', href: 'mailto:otavio.exec@gmail.com' },
+                  { icon: OrcidIcon, label: 'ORCID', href: 'https://orcid.org/0009-0000-2002-8375' },
                 ].map(({ icon: Icon, label, href }) => (
                   <Link
                     key={label}
@@ -232,7 +234,7 @@ export default function ProfileContent() {
                     <div
                       key={`${org.org}-${ri}`}
                       className="py-7"
-                      style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+                      style={{ borderBottom: '1px solid var(--divider)' }}
                     >
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
                         <div>
@@ -301,7 +303,7 @@ export default function ProfileContent() {
                   <div
                     key={ed.degree}
                     className="py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1"
-                    style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+                    style={{ borderBottom: '1px solid var(--divider)' }}
                   >
                     <div className="flex items-start gap-3">
                       <div>
@@ -313,8 +315,8 @@ export default function ProfileContent() {
                             <span
                               className="text-[9px] font-semibold tracking-widest uppercase px-1.5 py-0.5 rounded"
                               style={{
-                                background: 'rgba(255,255,255,0.06)',
-                                border: '1px solid rgba(255,255,255,0.12)',
+                                background: 'var(--divider)',
+                                border: '1px solid var(--divider-bright)',
                                 color: HIGHLIGHT,
                               }}
                             >

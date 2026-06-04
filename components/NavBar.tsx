@@ -22,10 +22,10 @@ export default function NavBar() {
       style={
         scrolled
           ? {
-              background: 'rgba(10,10,10,0.92)',
+              background: 'var(--nav-bg)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
-              borderBottom: '1px solid rgba(255,255,255,0.06)',
+              borderBottom: '1px solid var(--nav-border)',
             }
           : {
               background: 'transparent',
@@ -40,15 +40,16 @@ export default function NavBar() {
         <div
           className="flex items-center gap-0.5 p-1 rounded-full"
           style={{
-            background: 'rgba(160,150,255,0.07)',
+            background: 'var(--pill-bg)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid rgba(170,160,255,0.13)',
-            boxShadow: 'inset 0 1px 0 rgba(170,160,255,0.10)',
+            border: '1px solid var(--pill-border)',
+            boxShadow: 'inset 0 1px 0 var(--pill-shadow)',
           }}
         >
           <NavPill href="/" active={!isLog}>Profile</NavPill>
           <NavPill href="/log" active={isLog}>Log</NavPill>
+          <NavPill href="/resume.pdf" active={false} external>Resume</NavPill>
         </div>
       </div>
     </nav>
@@ -58,19 +59,23 @@ export default function NavBar() {
 function NavPill({
   href,
   active,
+  external,
   children,
 }: {
   href: string;
   active: boolean;
+  external?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <Link
       href={href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
       className="px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200"
       style={
         active
-          ? { background: '#f0eeff', color: '#080810' }
+          ? { background: 'var(--pill-active-bg)', color: 'var(--pill-active-color)' }
           : { color: 'var(--text-secondary)' }
       }
       onMouseEnter={(e) => {
