@@ -7,11 +7,11 @@ export default function LogHero() {
   return (
     <section
       className="relative flex items-end justify-center overflow-hidden"
-      style={{ height: '38vh', minHeight: '220px' }}
+      style={{ height: '38vh', minHeight: '220px', background: 'var(--bg)' }}
     >
       {/* Particle canvas */}
       <div className="absolute inset-0">
-        <ParticleCanvas className="w-full h-full" />
+        <ParticleCanvas className="w-full h-full" fadeBottom />
       </div>
 
       {/* Overlays */}

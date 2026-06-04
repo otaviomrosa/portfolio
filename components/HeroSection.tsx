@@ -25,20 +25,11 @@ const fadeUp = (delay: number) => ({
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ background: 'var(--bg)' }}>
       {/* Particle canvas */}
-      <div className="absolute inset-0">
-        <ParticleCanvas className="w-full h-full" />
+      <div className="absolute inset-x-0 top-0" style={{ height: '30vh', minHeight: '175px' }}>
+        <ParticleCanvas className="w-full h-full" fadeBottom />
       </div>
-
-      {/* Radial vignette */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 80% 60% at 50% 40%, transparent 30%, rgba(10,10,10,0.55) 100%)',
-        }}
-      />
 
       {/* Bottom fade */}
       <div
