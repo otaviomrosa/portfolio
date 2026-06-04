@@ -148,7 +148,7 @@ export default function ProfileContent() {
   return (
     <main className="pb-32" style={{ background: 'var(--bg)' }}>
       <div className="max-w-5xl mx-auto px-6">
-        <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-20 pt-24">
+        <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-20 pt-12">
 
           {/* ── Sticky sidebar ─────────────────────────────────────────────── */}
           <aside className="mb-16 lg:mb-0">
