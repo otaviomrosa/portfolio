@@ -17,13 +17,14 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Otavio Rosa — AI/ML Researcher",
+  title: "Otavio Rosa",
   description:
     "MS CS @ USF. Researching generative image detection, LLM bias, and computer vision. Building at the intersection of research and production.",
   keywords: ["AI", "Machine Learning", "Computer Vision", "Research", "USF", "Portfolio"],
   authors: [{ name: "Otavio Rosa" }],
+  icons: { icon: "/favicon.svg" },
   openGraph: {
-    title: "Otavio Rosa — AI/ML Researcher",
+    title: "Otavio Rosa",
     description: "MS CS @ USF. CV & GenAI Research.",
     url: "https://otaviorosa.com",
     siteName: "Otavio Rosa",

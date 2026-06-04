@@ -39,25 +39,9 @@ export default function PostCard({ post, index }: Props) {
               />
             ) : (
               <div
-                className="w-full h-full flex items-center justify-center transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full transition-transform duration-500 group-hover:scale-105"
                 style={{ background: gradient }}
-              >
-                {/* Decorative dots cluster in fallback */}
-                <div className="opacity-30">
-                  {[...Array(7)].map((_, i) => (
-                    <span
-                      key={i}
-                      className="inline-block rounded-full mx-0.5"
-                      style={{
-                        width: 3 + (i % 3),
-                        height: 3 + (i % 3),
-                        background: 'var(--accent)',
-                        opacity: 0.4 + (i % 3) * 0.2,
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
+              />
             )}
             {/* Shimmer overlay on hover */}
             <div
