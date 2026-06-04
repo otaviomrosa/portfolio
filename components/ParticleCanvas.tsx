@@ -121,7 +121,7 @@ export default function ParticleCanvas({ className, fadeBottom = false }: Props)
         // Slightly silvery-gray rather than pure white — less harsh
         ctx.beginPath();
         ctx.arc(px, py, radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(210,218,228,${opacity.toFixed(3)})`;
+        ctx.fillStyle = `rgba(200,205,245,${opacity.toFixed(3)})`;
         ctx.fill();
 
         // Subtle glow only on the very brightest dots
@@ -130,8 +130,8 @@ export default function ParticleCanvas({ className, fadeBottom = false }: Props)
           const glowR = radius * (2.5 + mouseBoost * 2);
           const glowA = extra * 0.28;
           const grad = ctx.createRadialGradient(px, py, 0, px, py, glowR);
-          grad.addColorStop(0, `rgba(220,232,248,${glowA.toFixed(3)})`);
-          grad.addColorStop(1, 'rgba(220,232,248,0)');
+          grad.addColorStop(0, `rgba(200,210,255,${glowA.toFixed(3)})`);
+          grad.addColorStop(1, 'rgba(200,210,255,0)');
           ctx.beginPath();
           ctx.arc(px, py, glowR, 0, Math.PI * 2);
           ctx.fillStyle = grad;

@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
 
-// ─── Accent tokens ──────────────────────────────────────────────────────────
-const BLUE = '#e8e8e8';
-const BLUE_MID = '#909090';
+const HIGHLIGHT = '#ededfc';
+const LABEL = '#9898b8';
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 
@@ -123,14 +122,14 @@ function SectionHeading({ num, children }: { num: string; children: React.ReactN
   return (
     <div className="flex items-center gap-3 mb-10">
       <span
-        className="text-xs tabular-nums"
+        className="text-sm tabular-nums"
         style={{ color: 'var(--text-muted)' }}
       >
         {num}
       </span>
       <span
-        className="text-sm font-medium tracking-wide uppercase"
-        style={{ color: BLUE_MID }}
+        className="text-base font-medium tracking-wide uppercase"
+        style={{ color: LABEL }}
       >
         {children}
       </span>
@@ -162,10 +161,10 @@ export default function ProfileContent() {
                   { value: "Spring '27", sub: 'graduating' },
                 ].map((s) => (
                   <div key={s.sub}>
-                    <p className="text-base font-semibold" style={{ color: BLUE }}>
+                    <p className="text-lg font-semibold" style={{ color: HIGHLIGHT }}>
                       {s.value}
                     </p>
-                    <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
+                    <p className="text-sm mt-0.5" style={{ color: 'var(--text-muted)' }}>
                       {s.sub}
                     </p>
                   </div>
@@ -187,9 +186,9 @@ export default function ProfileContent() {
                     href={href}
                     target={href.startsWith('http') ? '_blank' : undefined}
                     rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="link-muted flex items-center gap-2 text-sm group"
+                    className="link-muted flex items-center gap-2 text-base group"
                   >
-                    <Icon size={13} strokeWidth={1.6} />
+                    <Icon size={15} strokeWidth={1.6} />
                     {label}
                     <ArrowUpRight
                       size={11}
@@ -206,19 +205,19 @@ export default function ProfileContent() {
 
             {/* About */}
             <section>
-              <p className="text-base md:text-lg leading-relaxed font-light mb-4" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
                 I work on{' '}
                 <span style={{ color: 'var(--text)' }}>computer vision</span>,{' '}
                 <span style={{ color: 'var(--text)' }}>generative AI</span>,{' '}and{' '}
                 <span style={{ color: 'var(--text)' }}>synthetic media detection</span>.
               </p>
-              <p className="text-base md:text-lg leading-relaxed font-light mb-4" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
                 My work has included LLM bias research, robotic vision systems, and edge AI deployment.
               </p>
-              <p className="text-base md:text-lg leading-relaxed font-light mb-4" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
                 I'm looking for AI/ML Engineering roles where research depth meets production systems.
               </p>
-              <p className="text-base md:text-lg leading-relaxed font-light" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                 Previously at <span style={{ color: 'var(--text)' }}>ClearSet.AI</span>.
               </p>
 
@@ -237,15 +236,15 @@ export default function ProfileContent() {
                     >
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
                         <div>
-                          <p className="text-base font-semibold" style={{ color: 'var(--text)' }}>
+                          <p className="text-lg font-semibold" style={{ color: 'var(--text)' }}>
                             {role.title}
                           </p>
-                          <p className="text-sm mt-0.5" style={{ color: BLUE_MID }}>
+                          <p className="text-base mt-0.5" style={{ color: LABEL }}>
                             {role.supervisor ? `${role.supervisor} · ` : ''}{org.org}
                           </p>
                         </div>
                         <span
-                          className="text-sm shrink-0"
+                          className="text-base shrink-0"
                           style={{ color: 'var(--text-muted)' }}
                         >
                           {role.period}
@@ -255,7 +254,7 @@ export default function ProfileContent() {
                         {role.bullets.map((b, bi) => (
                           <li
                             key={bi}
-                            className="text-base leading-relaxed pl-3 relative"
+                            className="text-lg leading-relaxed pl-3 relative"
                             style={{ color: 'var(--text-secondary)' }}
                           >
                             <span
@@ -279,7 +278,7 @@ export default function ProfileContent() {
                 {skillGroups.map((group) => (
                   <div key={group.label}>
                     <p
-                      className="text-xs tracking-wide uppercase mb-3"
+                      className="text-sm tracking-wide uppercase mb-3"
                       style={{ color: 'var(--text-muted)' }}
                     >
                       {group.label}
@@ -307,7 +306,7 @@ export default function ProfileContent() {
                     <div className="flex items-start gap-3">
                       <div>
                         <div className="flex items-center gap-2">
-                          <p className="text-base font-medium" style={{ color: 'var(--text)' }}>
+                          <p className="text-lg font-medium" style={{ color: 'var(--text)' }}>
                             {ed.school}
                           </p>
                           {ed.current && (
@@ -316,20 +315,20 @@ export default function ProfileContent() {
                               style={{
                                 background: 'rgba(255,255,255,0.06)',
                                 border: '1px solid rgba(255,255,255,0.12)',
-                                color: BLUE,
+                                color: HIGHLIGHT,
                               }}
                             >
                               Current
                             </span>
                           )}
                         </div>
-                        <p className="text-sm mt-0.5" style={{ color: 'var(--text-secondary)' }}>
+                        <p className="text-base mt-0.5" style={{ color: 'var(--text-secondary)' }}>
                           {ed.degree}
                         </p>
                       </div>
                     </div>
                     <span
-                      className="text-sm shrink-0"
+                      className="text-base shrink-0"
                       style={{ color: 'var(--text-muted)' }}
                     >
                       {ed.period}
@@ -342,7 +341,7 @@ export default function ProfileContent() {
             {/* Certifications */}
             <section>
               <SectionHeading num="04">Certifications</SectionHeading>
-              <p className="text-base" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
                 UR2PhD Undergraduate Research Training Course Participant
               </p>
             </section>
