@@ -154,17 +154,6 @@ export default function ProfileContent() {
           <aside className="mb-16 lg:mb-0">
             <div className="lg:sticky lg:top-24 space-y-8">
 
-              {/* Identity */}
-              <div>
-                <p className="text-lg font-semibold mb-1" style={{ color: 'var(--text)' }}>
-                  Otavio Rosa
-                </p>
-                <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                  MS CS · USF<br />
-                  Computer Vision &amp; GenAI
-                </p>
-              </div>
-
               {/* Stats */}
               <div className="space-y-3">
                 {[
