@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { Calendar, Tag } from 'lucide-react';
 import type { PostMeta } from '@/lib/posts';
 import { formatDate } from '@/lib/utils';
@@ -22,12 +21,7 @@ export default function PostCard({ post, index }: Props) {
   const gradient = FALLBACK_GRADIENTS[index % FALLBACK_GRADIENTS.length];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: index * 0.07 }}
-    >
+    <div>
       <Link href={`/log/${post.slug}`} className="block group">
         <article
           className="card card-hover overflow-hidden"
@@ -123,6 +117,6 @@ export default function PostCard({ post, index }: Props) {
           </div>
         </article>
       </Link>
-    </motion.div>
+    </div>
   );
 }
