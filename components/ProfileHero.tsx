@@ -18,9 +18,9 @@ export default function ProfileHero() {
       className="relative flex items-end justify-center overflow-hidden"
       style={{ height: '34vh', minHeight: '220px', background: 'var(--bg)' }}
     >
-      <div className="absolute inset-0">
+      {/* <div className="absolute inset-0">
         <ParticleCanvas className="w-full h-full" fadeBottom />
-      </div>
+      </div> */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'linear-gradient(to bottom, var(--hero-tint), transparent 40%, var(--bg) 100%)' }}
