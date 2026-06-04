@@ -7,7 +7,7 @@ export default function LogHero() {
   return (
     <section
       className="relative flex items-end justify-center overflow-hidden"
-      style={{ height: '38vh', minHeight: '220px', background: 'var(--bg)' }}
+      style={{ height: '34vh', minHeight: '220px', background: 'var(--bg)' }}
     >
       {/* Particle canvas */}
       <div className="absolute inset-0">
@@ -21,13 +21,13 @@ export default function LogHero() {
       />
 
       {/* Text */}
-      <div className="relative z-10 text-center pb-10 px-6">
+      <div className="relative z-10 text-center pb-[6.5rem] px-6">
         <motion.h1
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="font-bold tracking-tight mb-3"
-          style={{ color: 'var(--text)', fontFamily: 'var(--font-space)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', letterSpacing: '-0.02em' }}
+          className="font-semibold tracking-tight mb-3"
+          style={{ color: 'var(--text)', fontFamily: 'var(--font-space)', fontSize: 'clamp(2.4rem, 4.5vw, 3.4rem)', letterSpacing: '-0.02em' }}
         >
           Study Log
         </motion.h1>
