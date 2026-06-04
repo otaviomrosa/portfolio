@@ -14,8 +14,8 @@ export default function LogPage() {
     <>
       <LogHero />
 
-      <main className="pb-24" style={{ background: 'var(--bg)' }}>
-        <div className="px-6 pt-10" style={{ maxWidth: '780px', margin: '0 auto' }}>
+      <main className="pb-24 -mt-14" style={{ background: 'var(--bg)' }}>
+        <div className="px-6 pt-4" style={{ maxWidth: '780px', margin: '0 auto' }}>
           {posts.length === 0 ? (
             <div
               className="card text-center py-16"

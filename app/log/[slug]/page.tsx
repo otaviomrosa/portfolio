@@ -47,7 +47,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
             </div>
             <div
               className="absolute inset-0"
-              style={{ background: 'linear-gradient(to bottom, rgba(8,8,16,0.3), transparent 40%, var(--bg) 100%)' }}
+              style={{ background: 'linear-gradient(to bottom, var(--hero-tint), transparent 40%, var(--bg) 100%)' }}
             />
           </>
         )}
@@ -99,7 +99,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       <main className="pb-24" style={{ background: 'var(--bg)' }}>
         <div className="px-6 pt-10" style={{ maxWidth: '760px', margin: '0 auto' }}>
           {/* MDX content */}
-          <div className="prose prose-invert max-w-none">
+          <div className="prose prose-lg max-w-none">
             <MDXRemote source={post.content} />
           </div>
 

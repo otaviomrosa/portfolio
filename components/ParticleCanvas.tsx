@@ -19,7 +19,6 @@ interface Props {
 
 export default function ParticleCanvas({ className, fadeBottom = false }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const mouseRef = useRef({ x: -9999, y: -9999 });
   const rafRef = useRef<number>(0);
 
   const buildGrid = useCallback((width: number, height: number): Particle[] => {
@@ -65,13 +64,6 @@ export default function ParticleCanvas({ className, fadeBottom = false }: Props)
     resize();
     window.addEventListener('resize', resize);
 
-    // Listen on document so dots react even when the cursor is over text/UI layers
-    const onMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-    };
-
-    document.addEventListener('mousemove', onMouseMove);
 
     const draw = () => {
       const w = canvas.offsetWidth;
@@ -79,30 +71,19 @@ export default function ParticleCanvas({ className, fadeBottom = false }: Props)
       ctx.clearRect(0, 0, w, h);
       t += 0.004;
 
-      const mx = mouseRef.current.x;
-      const my = mouseRef.current.y;
-
       for (const p of particles) {
         const nx = p.baseX / w;
         const ny = p.baseY / h;
 
-        // Layered wave functions
         const w1 = Math.sin(nx * 7.2 + t * 1.05 + p.phase) *
                    Math.cos(ny * 5.8 - t * 0.72);
         const w2 = Math.sin((nx + ny) * 4.8 - t * 0.88 + p.phase * 0.6);
         const w3 = Math.cos(nx * 11.0 - ny * 7.5 + t * 1.25 + p.phase * 0.4);
-        const wave = ((w1 * 0.5 + w2 * 0.3 + w3 * 0.2) + 1) / 2; // 0–1
+        const wave = ((w1 * 0.5 + w2 * 0.3 + w3 * 0.2) + 1) / 2;
 
-        // Per-particle star twinkle — each dot breathes at its own rate
         const twinkle = Math.sin(t * p.twinkleSpeed + p.twinklePhase) * p.twinkleMag;
 
-        // Mouse influence — subtle, only visible up close
-        const dx = p.baseX - mx;
-        const dy = p.baseY - my;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const mouseBoost = Math.max(0, 1 - dist / 120) * 0.28;
-
-        const brightness = Math.min(1, Math.max(0, wave + twinkle + mouseBoost));
+        const brightness = Math.min(1, Math.max(0, wave + twinkle));
 
         // Fabric displacement
         const disp = (brightness - 0.5) * 4;
@@ -118,20 +99,23 @@ export default function ParticleCanvas({ className, fadeBottom = false }: Props)
 
         if (opacity < 0.015) continue;
 
-        // Slightly silvery-gray rather than pure white — less harsh
+        const isLight = document.documentElement.classList.contains('light');
+        const dotRGB = isLight ? '90,90,90' : '210,210,210';
+        const glowRGB = isLight ? '80,80,80' : '215,215,215';
+
         ctx.beginPath();
         ctx.arc(px, py, radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(200,205,245,${opacity.toFixed(3)})`;
+        ctx.fillStyle = `rgba(${dotRGB},${opacity.toFixed(3)})`;
         ctx.fill();
 
         // Subtle glow only on the very brightest dots
         if (brightness > 0.80) {
           const extra = brightness - 0.80;
-          const glowR = radius * (2.5 + mouseBoost * 2);
+          const glowR = radius * 2.5;
           const glowA = extra * 0.28;
           const grad = ctx.createRadialGradient(px, py, 0, px, py, glowR);
-          grad.addColorStop(0, `rgba(200,210,255,${glowA.toFixed(3)})`);
-          grad.addColorStop(1, 'rgba(200,210,255,0)');
+          grad.addColorStop(0, `rgba(${glowRGB},${glowA.toFixed(3)})`);
+          grad.addColorStop(1, `rgba(${glowRGB},0)`);
           ctx.beginPath();
           ctx.arc(px, py, glowR, 0, Math.PI * 2);
           ctx.fillStyle = grad;
@@ -147,7 +131,6 @@ export default function ParticleCanvas({ className, fadeBottom = false }: Props)
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener('resize', resize);
-      document.removeEventListener('mousemove', onMouseMove);
     };
   }, [buildGrid]);
 

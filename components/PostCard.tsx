@@ -70,7 +70,7 @@ export default function PostCard({ post, index }: Props) {
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
               style={{
                 background:
-                  'linear-gradient(135deg, transparent 40%, rgba(160,150,255,0.07) 60%, transparent 80%)',
+                  'linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.06) 60%, transparent 80%)',
               }}
             />
           </div>
