@@ -1,13 +1,21 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import ParticleCanvas from './ParticleCanvas';
+
+const socialLinks = [
+  { icon: Github, label: 'GitHub', href: 'https://github.com/otaviomrosa' },
+  { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/rosaotavio' },
+  { icon: Mail, label: 'Email', href: 'mailto:otavio.exec@gmail.com' },
+];
 
 export default function ProfileHero() {
   return (
     <section
       className="relative flex items-end justify-center overflow-hidden"
-      style={{ height: '22vh', minHeight: '140px', background: 'var(--bg)' }}
+      style={{ height: '34vh', minHeight: '220px', background: 'var(--bg)' }}
     >
       <div className="absolute inset-0">
         <ParticleCanvas className="w-full h-full" fadeBottom />
@@ -17,13 +25,13 @@ export default function ProfileHero() {
         style={{ background: 'linear-gradient(to bottom, rgba(10,10,10,0.35), transparent 40%, var(--bg) 100%)' }}
       />
 
-      <div className="relative z-10 text-center pb-6 px-6">
+      <div className="relative z-10 text-center pb-14 px-6">
         <motion.h1
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="font-semibold tracking-tight"
-          style={{ color: 'var(--text)', fontFamily: 'var(--font-space)', fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', letterSpacing: '-0.02em' }}
+          style={{ color: 'var(--text)', fontFamily: 'var(--font-space)', fontSize: 'clamp(2.4rem, 4.5vw, 3.4rem)', letterSpacing: '-0.02em' }}
         >
           Otavio Rosa
         </motion.h1>
@@ -31,11 +39,30 @@ export default function ProfileHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.12 }}
-          className="text-sm font-light mt-1"
+          className="text-base font-light mt-2"
           style={{ color: 'var(--text-secondary)' }}
         >
           MS CS · USF &nbsp;·&nbsp; Computer Vision &amp; Generative AI
         </motion.p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.22 }}
+          className="flex items-center justify-center gap-2 mt-6"
+        >
+          {socialLinks.map(({ icon: Icon, label, href }) => (
+            <Link
+              key={label}
+              href={href}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="tag flex items-center gap-1.5 transition-opacity duration-200 hover:opacity-70"
+            >
+              <Icon size={12} strokeWidth={1.6} />
+              {label}
+            </Link>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
