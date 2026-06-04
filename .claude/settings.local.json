@@ -18,7 +18,8 @@
       "Bash(git commit *)",
       "Bash(git tag *)",
       "Bash(git checkout *)",
-      "Bash(node *)"
+      "Bash(node *)",
+      "Bash(grep -r \"#[0-9a-fA-F]\\\\{3,6\\\\}\\\\|rgba\\\\|--.*gray\\\\|--.*neutral\\\\|--.*color\" /Users/otavio/Documents/projects/portfolio/app/globals.css /Users/otavio/Documents/projects/portfolio/tailwind.config.ts /Users/otavio/Documents/projects/portfolio/components/ProfileContent.tsx /Users/otavio/Documents/projects/portfolio/components/NavBar.tsx /Users/otavio/Documents/projects/portfolio/app/log/page.tsx)"
     ]
   }
 }

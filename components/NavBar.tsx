@@ -40,11 +40,11 @@ export default function NavBar() {
         <div
           className="flex items-center gap-0.5 p-1 rounded-full"
           style={{
-            background: 'rgba(255,255,255,0.05)',
+            background: 'rgba(160,150,255,0.07)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.08)',
+            border: '1px solid rgba(170,160,255,0.13)',
+            boxShadow: 'inset 0 1px 0 rgba(170,160,255,0.10)',
           }}
         >
           <NavPill href="/" active={!isLog}>Profile</NavPill>
@@ -70,7 +70,7 @@ function NavPill({
       className="px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200"
       style={
         active
-          ? { background: '#fff', color: '#080810' }
+          ? { background: '#f0eeff', color: '#080810' }
           : { color: 'var(--text-secondary)' }
       }
       onMouseEnter={(e) => {

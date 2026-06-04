@@ -98,15 +98,6 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       {/* ── Article body ── */}
       <main className="pb-24" style={{ background: 'var(--bg)' }}>
         <div className="px-6 pt-10" style={{ maxWidth: '760px', margin: '0 auto' }}>
-          {/* Tags */}
-          {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-8">
-              {post.tags.map((t) => (
-                <span key={t} className="tag">{t}</span>
-              ))}
-            </div>
-          )}
-
           {/* MDX content */}
           <div className="prose prose-invert max-w-none">
             <MDXRemote source={post.content} />

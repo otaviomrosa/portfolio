@@ -61,4 +61,3 @@ export function getPost(slug: string): Post {
   };
 }
 
-export { formatDate } from './utils';
