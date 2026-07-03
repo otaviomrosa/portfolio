@@ -9,8 +9,8 @@ I've been spending time this week going deeper into the CPython data model. The 
 
 Here's one that caught my attention: most developers know `__eq__` lets you define what it means for two objects to be "equal." What most people miss is that overriding `__eq__` implicitly sets `__hash__` to `None`. Consequently, that breaks any data structures that rely on hashing, like sets and dicts.
 
-This contract is spelled out clearly in the data model docs. Objects that compare equal must have the same hash value. This is not enforced by the interpreter, it's assumed, so the distinction between "enforced" and "assumed" is where a lot of bugs live.
+This contract is spelled out clearly in the data model  (that oftentimes go unread): Objects that compare equal must have the same hash value. This is not enforced by the interpreter, which assumes you know this behavior exists. This assumption is where a lot of bugs live.
 
 I ran into this while building a model registry class to track unique ML model deployments by name and version. Two deployment records for the same model and version but different latency measurements should collapse to one entry in the registry. Get the contract wrong and the registry double-counts. Get it right and it just works.
 
-The broader pattern I keep seeing in the data model docs is that Python has many of these assumed contracts. The language gives you a lot of flexibility, and the price of that is that it trusts you to uphold invariants the interpreter won't check for you. For researchers building production ML systems, that's worth understanding at the source rather than learning from bug-fixing.
+The pattern I keep seeing in the data model docs is that Python has many of these assumed contracts. The language gives you a lot of flexibility, and the price of that is that it trusts you to uphold invariants the interpreter won't check for you. For researchers building production ML systems, that's worth understanding at the source rather than learning from bug-fixing.
