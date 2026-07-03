@@ -3,9 +3,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { X, Download } from 'lucide-react';
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
+  const [resumeOpen, setResumeOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -14,77 +16,131 @@ export default function NavBar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!resumeOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setResumeOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [resumeOpen]);
+
   const isLog = pathname.startsWith('/log');
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={
-        scrolled
-          ? {
-              background: 'var(--nav-bg)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              borderBottom: '1px solid var(--nav-border)',
-            }
-          : {
-              background: 'transparent',
-              backdropFilter: 'none',
-              WebkitBackdropFilter: 'none',
-              borderBottom: '1px solid transparent',
-            }
-      }
-    >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-center">
-        {/* Pill toggle — glass container */}
-        <div
-          className="flex items-center gap-0.5 p-1 rounded-full"
-          style={{
-            background: 'var(--pill-bg)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid var(--pill-border)',
-            boxShadow: 'inset 0 1px 0 var(--pill-shadow)',
-          }}
-        >
-          <NavPill href="/" active={!isLog}>Profile</NavPill>
-          <NavPill href="/log" active={isLog}>Log</NavPill>
-          <NavPill href="/resume.pdf" active={false} external>Resume</NavPill>
+    <>
+      <nav
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        style={
+          scrolled
+            ? {
+                background: 'var(--nav-bg)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                borderBottom: '1px solid var(--nav-border)',
+              }
+            : {
+                background: 'transparent',
+                backdropFilter: 'none',
+                WebkitBackdropFilter: 'none',
+                borderBottom: '1px solid transparent',
+              }
+        }
+      >
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-center">
+          <div className="flex items-center gap-8">
+            <NavLink href="/" active={!isLog}>Profile</NavLink>
+            <NavLink href="/log" active={isLog}>Log</NavLink>
+            <NavLink active={false} onClick={() => setResumeOpen(true)}>Resume</NavLink>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {resumeOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-6"
+          style={{ background: 'rgba(0, 0, 0, 0.6)', backdropFilter: 'blur(4px)' }}
+          onClick={() => setResumeOpen(false)}
+        >
+          <div
+            className="relative w-full rounded-lg overflow-hidden flex flex-col"
+            style={{ maxWidth: '820px', height: '90vh', background: 'var(--bg)', border: '1px solid var(--divider-bright)' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              className="flex items-center justify-between px-4 py-2.5 shrink-0"
+              style={{ borderBottom: '1px solid var(--divider)' }}
+            >
+              <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
+                Resume
+              </span>
+              <div className="flex items-center gap-4">
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="flex items-center gap-1.5 text-xs transition-colors duration-200"
+                  style={{ color: 'var(--text-secondary)' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--text)'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)'; }}
+                >
+                  <Download size={13} strokeWidth={1.6} />
+                  Download
+                </a>
+                <button
+                  onClick={() => setResumeOpen(false)}
+                  aria-label="Close"
+                  className="flex items-center justify-center transition-colors duration-200"
+                  style={{ color: 'var(--text-secondary)' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--text)'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)'; }}
+                >
+                  <X size={16} strokeWidth={1.6} />
+                </button>
+              </div>
+            </div>
+            <iframe src="/resume.pdf" title="Resume" className="flex-1 w-full" style={{ border: 'none' }} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
-function NavPill({
+function NavLink({
   href,
   active,
-  external,
+  onClick,
   children,
 }: {
-  href: string;
+  href?: string;
   active: boolean;
-  external?: boolean;
+  onClick?: () => void;
   children: React.ReactNode;
 }) {
+  const className = 'text-sm font-medium pb-1 transition-colors duration-200';
+  const style = {
+    color: active ? 'var(--text)' : 'var(--text-secondary)',
+    borderBottom: active ? '1px solid var(--text)' : '1px solid transparent',
+  };
+  const hoverHandlers = {
+    onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
+      if (!active) e.currentTarget.style.color = 'var(--text)';
+    },
+    onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
+      if (!active) e.currentTarget.style.color = 'var(--text-secondary)';
+    },
+  };
+
+  if (onClick) {
+    return (
+      <button onClick={onClick} className={className} style={style} {...hoverHandlers}>
+        {children}
+      </button>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      target={external ? '_blank' : undefined}
-      rel={external ? 'noopener noreferrer' : undefined}
-      className="px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200"
-      style={
-        active
-          ? { background: 'var(--pill-active-bg)', color: 'var(--pill-active-color)' }
-          : { color: 'var(--text-secondary)' }
-      }
-      onMouseEnter={(e) => {
-        if (!active) (e.currentTarget as HTMLElement).style.color = 'var(--text)';
-      }}
-      onMouseLeave={(e) => {
-        if (!active) (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)';
-      }}
-    >
+    <Link href={href!} className={className} style={style} {...hoverHandlers}>
       {children}
     </Link>
   );
