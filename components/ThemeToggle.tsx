@@ -27,16 +27,12 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label="Toggle theme"
-      className="fixed top-3 left-4 z-50 rounded-full flex items-center justify-center"
-      style={{
-        width: 40,
-        height: 40,
-        background: 'var(--toggle-bg)',
-        border: '1px solid var(--toggle-border)',
-        color: 'var(--text-muted)',
-      }}
+      className="fixed z-50 flex items-center justify-center transition-colors duration-200"
+      style={{ top: '32px', left: '24px', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }}
+      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--text)'; }}
+      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)'; }}
     >
-      {dark ? <Sun size={14} strokeWidth={1.6} /> : <Moon size={14} strokeWidth={1.6} />}
+      {dark ? <Sun size={16} strokeWidth={1.6} /> : <Moon size={16} strokeWidth={1.6} />}
     </button>
   );
 }

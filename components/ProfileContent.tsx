@@ -123,13 +123,13 @@ function SectionHeading({ num, children }: { num: string; children: React.ReactN
   return (
     <div className="flex items-center gap-3 mb-10">
       <span
-        className="text-sm tabular-nums"
+        className="text-xs tabular-nums"
         style={{ color: 'var(--text-muted)' }}
       >
         {num}
       </span>
       <span
-        className="text-base font-medium tracking-wide uppercase"
+        className="text-sm font-medium tracking-wide uppercase"
         style={{ color: LABEL }}
       >
         {children}
@@ -162,10 +162,10 @@ export default function ProfileContent() {
                   { value: "Spring '27", sub: 'graduating' },
                 ].map((s) => (
                   <div key={s.sub}>
-                    <p className="text-lg font-semibold" style={{ color: HIGHLIGHT }}>
+                    <p className="text-base font-semibold" style={{ color: HIGHLIGHT }}>
                       {s.value}
                     </p>
-                    <p className="text-sm mt-0.5" style={{ color: 'var(--text-muted)' }}>
+                    <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
                       {s.sub}
                     </p>
                   </div>
@@ -178,19 +178,21 @@ export default function ProfileContent() {
               {/* Links */}
               <nav className="space-y-2">
                 {[
-                  { icon: Github, label: 'GitHub', href: 'https://github.com/otaviomrosa' },
-                  { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/rosaotavio' },
-                  { icon: Mail, label: 'Email', href: 'mailto:otavio.exec@gmail.com' },
-                  { icon: OrcidIcon, label: 'ORCID', href: 'https://orcid.org/0009-0000-2002-8375' },
-                ].map(({ icon: Icon, label, href }) => (
+                  { icon: Github, label: 'GitHub', href: 'https://github.com/otaviomrosa', color: 'var(--icon-github)' },
+                  { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/rosaotavio', color: 'var(--icon-linkedin)' },
+                  { icon: Mail, label: 'Email', href: 'mailto:otavio.exec@gmail.com', color: 'var(--icon-email)' },
+                  { icon: OrcidIcon, label: 'ORCID', href: 'https://orcid.org/0009-0000-2002-8375', color: 'var(--icon-orcid)' },
+                ].map(({ icon: Icon, label, href, color }) => (
                   <Link
                     key={label}
                     href={href}
                     target={href.startsWith('http') ? '_blank' : undefined}
                     rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="link-muted flex items-center gap-2 text-base group"
+                    className="link-muted flex items-center gap-2 text-sm group"
                   >
-                    <Icon size={15} strokeWidth={1.6} />
+                    <span style={{ color }} className="flex items-center">
+                      <Icon size={15} strokeWidth={1.6} />
+                    </span>
                     {label}
                     <ArrowUpRight
                       size={11}
@@ -207,19 +209,19 @@ export default function ProfileContent() {
 
             {/* About */}
             <section>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
                 I work on{' '}
                 <span style={{ color: 'var(--text)' }}>computer vision</span>,{' '}
                 <span style={{ color: 'var(--text)' }}>generative AI</span>,{' '}and{' '}
                 <span style={{ color: 'var(--text)' }}>synthetic media detection</span>.
               </p>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
                 My work has included LLM bias research, robotic vision systems, and edge AI deployment.
               </p>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
                 I'm looking for AI/ML Engineering roles where research depth meets production systems.
               </p>
-              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                 Previously at <span style={{ color: 'var(--text)' }}>ClearSet.AI</span>.
               </p>
 
@@ -238,15 +240,15 @@ export default function ProfileContent() {
                     >
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
                         <div>
-                          <p className="text-lg font-semibold" style={{ color: 'var(--text)' }}>
+                          <p className="text-base font-semibold" style={{ color: 'var(--text)' }}>
                             {role.title}
                           </p>
-                          <p className="text-base mt-0.5" style={{ color: LABEL }}>
+                          <p className="text-sm mt-0.5" style={{ color: LABEL }}>
                             {role.supervisor ? `${role.supervisor} · ` : ''}{org.org}
                           </p>
                         </div>
                         <span
-                          className="text-base shrink-0"
+                          className="text-sm shrink-0"
                           style={{ color: 'var(--text-muted)' }}
                         >
                           {role.period}
@@ -256,7 +258,7 @@ export default function ProfileContent() {
                         {role.bullets.map((b, bi) => (
                           <li
                             key={bi}
-                            className="text-lg leading-relaxed pl-3 relative"
+                            className="text-base leading-relaxed pl-3 relative"
                             style={{ color: 'var(--text-secondary)' }}
                           >
                             <span
@@ -280,7 +282,7 @@ export default function ProfileContent() {
                 {skillGroups.map((group) => (
                   <div key={group.label}>
                     <p
-                      className="text-sm tracking-wide uppercase mb-3"
+                      className="text-xs tracking-wide uppercase mb-3"
                       style={{ color: 'var(--text-muted)' }}
                     >
                       {group.label}
@@ -308,7 +310,7 @@ export default function ProfileContent() {
                     <div className="flex items-start gap-3">
                       <div>
                         <div className="flex items-center gap-2">
-                          <p className="text-lg font-medium" style={{ color: 'var(--text)' }}>
+                          <p className="text-base font-medium" style={{ color: 'var(--text)' }}>
                             {ed.school}
                           </p>
                           {ed.current && (
@@ -324,13 +326,13 @@ export default function ProfileContent() {
                             </span>
                           )}
                         </div>
-                        <p className="text-base mt-0.5" style={{ color: 'var(--text-secondary)' }}>
+                        <p className="text-sm mt-0.5" style={{ color: 'var(--text-secondary)' }}>
                           {ed.degree}
                         </p>
                       </div>
                     </div>
                     <span
-                      className="text-base shrink-0"
+                      className="text-sm shrink-0"
                       style={{ color: 'var(--text-muted)' }}
                     >
                       {ed.period}
@@ -343,7 +345,7 @@ export default function ProfileContent() {
             {/* Certifications */}
             <section>
               <SectionHeading num="04">Certifications</SectionHeading>
-              <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-base" style={{ color: 'var(--text-secondary)' }}>
                 UR2PhD Undergraduate Research Training Course Participant
               </p>
             </section>
