@@ -1,0 +1,16 @@
+---
+title: "Exception Design Patterns for ML Systems"
+date: "2026-07-04"
+excerpt: "Building a model registry this week and finding that how a system communicates failure is as important as what it does when everything works."
+tags: ["Python", "Software Engineering", "AI Engineering", "MLOps"]
+---
+
+While building out this model registry, I'm reminded that a class that can't fail gracefully isn't production-ready. It's really easy to design code expecting everything will go right, but paying attention to the places code can fail is where the opportunities for interesting design decisions live.
+
+Take exception chaining, for example. When an operation fails because of another, you can choose to either catch the original exception and raise a new one, or let it propagate. It can be tempting to catch everything and raise a high-level error, but oftentimes you lose information in the process. A `KeyError` that says "model not found in registry" is more useful for debugging than a `RuntimeError` that says "promote failed". If the higher-level error doesn't add any meaningful context, it obfuscates the underlying cause of the problem.
+
+The rule I settled on was to catch an exception only when I have something real to add, otherwise I let it propagate and let the caller handle it. In `ModelRegistry`, the `promote` method calls `get` internally. If the model doesn't exist in the registry, `get` raises a `KeyError` with a descriptive message. `promote` doesn't catch it, since it has nothing useful to add.
+
+Something else worth noting is raising early and specifically. When `register` receives something that isn't a `ModelMetadata` instance, it raises a `TypeError` immediately with a message that names exactly what was expected. When it receives a duplicate, it raises a `ValueError` that explains why. These exceptions and descriptive messages are important documentation that tell the next developer or even yourself from the future what the method expects and what exactly went wrong.
+
+Honestly, thinking carefully about how code fails is something I never really did before. It's one of those things that seems obvious in hindsight but completely changes how you approach building things. It will surely save me a lot of headache as the registry ecosystem grows.
