@@ -1,0 +1,17 @@
+---
+title: "Controlled Attribute Access with Python Properties"
+date: "2026-07-04"
+excerpt: "Adding getters and setters to the model registry this week, and finding that properties are less about restriction and more about making implicit contracts explicit."
+tags: ["Python", "Software Engineering", "AI Engineering", "MLOps"]
+---
+As I continue building the model registry and this log, I keep thinking about the lessons I can learn and share from the things I'm implementing (after all, I would like this log to be meaningful and inspiring in some way, at the very least).
+
+Today, my focus was on decorators and controlling attribute access with properties as a way to validate input. Specifically, I want to avoid users passing negative latencies or strings where a boolean value should go.
+
+Python properties seem to be the cleanest way to handle that. Instead of exposing the attributes directly, we define a getter and setter that look like plain attributes, but run validation code underneath, and the caller has no idea it's even happening.  This is good, we want it to feel seamless, after all.
+
+As I rely on prebuilt classes from imported packages a lot in my daily research work, I noticed a slight gap in my intuition of properties. For instance, `self._latency`is the private attribute where the value actually lives, while `self.latency` is the interface the user interacts with when using the constructor of `ModelMetadata`. This relationship is not really intuitive, but by writing code manually and avoiding AI-assisted coding tools, I have been internalizing these things much faster.
+
+The other pattern I want to note is the alternative constructor I built with @classmethod. Instead of requiring the caller to remember argument order, they have the option of creating an instance of `ModelMetadata` with the `from_dict` function. The classmethod receives `cls` instead of `self`, which allows it to work correctly even if someone subclasses `ModelMetadata` later.
+
+Really enjoyed the work I did today, it all comes together to create a seamless, and safe user experience.
