@@ -1,0 +1,17 @@
+---
+title: "Enforcing Contracts with Abstract Base Classes and __slots__ in Python"
+date: "2026-07-06"
+excerpt: "Expanding the model registry with ABCs and __slots__, because code that enforces its own contracts is better than code that trusts everyone to follow them."
+tags: ["Python", "Software Engineering", "AI Engineering", "MLOps"]
+---
+As I continue expanding the functionalities of my model registry, I realized that `ModelMetadata` and any future model types have no formal relationship, meaning that nothing is stopping someone (or me) from writing a different model class that's missing critical methods, registering it, and having everything break at runtime. This is where Abstract Base Classes (ABCs) came to the rescue.
+
+The idea is to define a base class that declares every interface that its subclasses need to implement, If they don't, Python will be quick to raise a `TypeError`. 
+
+Also, ABCs aren't pure interfaces. My `BaseModel` carries a `describe` method that is inherited by other classes. When these concepts start feeling abstract, I like thinking of what's happening in terms of buildings: If a class is the blueprint of a building, ABCs are the building code mandating certain requirements they must have. My `describe` function is like a certain staircase design that every building gets for free (although they can certainly replace it if they want to.)
+
+The other thing I added today was `__slots__`. By default, every Python instance carries a `__dict__` that stores its attributes and allows new ones to be added dynamically to it at any point. With `__slots__`, we can replace that dictionary with a fixed set of named slots defined at class creation. Since the instance dictionary disappears, memory usage can drop significantly! Another benefit is that any attempts to add undeclared attributes raise an `AttributeError` immediately (since there is no dictionary to store them).
+
+The tricky part about `__slots__` is that every class in the inheritance chain needs to define it, even if it's just an empty tuple. If you miss one, the `__dict__` of the parent will be inherited by all of its subclasses.
+
+These strict enforcing rules might seem over-the-top for a personal project, but I'm not building code that will do the job, I'm building code that represents my skills as an AI Engineer and researcher.
