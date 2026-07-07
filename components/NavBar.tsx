@@ -31,21 +31,12 @@ export default function NavBar() {
     <>
       <nav
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-        style={
-          scrolled
-            ? {
-                background: 'var(--nav-bg)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                borderBottom: '1px solid var(--nav-border)',
-              }
-            : {
-                background: 'transparent',
-                backdropFilter: 'none',
-                WebkitBackdropFilter: 'none',
-                borderBottom: '1px solid transparent',
-              }
-        }
+        style={{
+          background: scrolled ? 'var(--nav-bg)' : 'var(--glass-bg)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderBottom: scrolled ? '1px solid var(--nav-border)' : '1px solid var(--glass-border)',
+        }}
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-center">
           <div className="flex items-center gap-8">
@@ -117,30 +108,22 @@ function NavLink({
   onClick?: () => void;
   children: React.ReactNode;
 }) {
-  const className = 'text-sm font-medium pb-1 transition-colors duration-200';
+  const className = 'text-sm font-medium pb-1';
   const style = {
-    color: active ? 'var(--text)' : 'var(--text-secondary)',
+    color: 'var(--text)',
     borderBottom: active ? '1px solid var(--text)' : '1px solid transparent',
-  };
-  const hoverHandlers = {
-    onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
-      if (!active) e.currentTarget.style.color = 'var(--text)';
-    },
-    onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
-      if (!active) e.currentTarget.style.color = 'var(--text-secondary)';
-    },
   };
 
   if (onClick) {
     return (
-      <button onClick={onClick} className={className} style={style} {...hoverHandlers}>
+      <button onClick={onClick} className={className} style={style}>
         {children}
       </button>
     );
   }
 
   return (
-    <Link href={href!} className={className} style={style} {...hoverHandlers}>
+    <Link href={href!} className={className} style={style}>
       {children}
     </Link>
   );

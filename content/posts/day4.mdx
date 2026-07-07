@@ -3,6 +3,7 @@ title: "Enforcing Contracts with Abstract Base Classes and __slots__ in Python"
 date: "2026-07-06"
 excerpt: "Expanding the model registry with ABCs and __slots__, because code that enforces its own contracts is better than code that trusts everyone to follow them."
 tags: ["Python", "Software Engineering", "AI Engineering", "MLOps"]
+image: "/images/posts/day4.jpg"
 ---
 As I continue expanding the functionalities of my model registry, I realized that `ModelMetadata` and any future model types have no formal relationship, meaning that nothing is stopping someone (or me) from writing a different model class that's missing critical methods, registering it, and having everything break at runtime. This is where Abstract Base Classes (ABCs) came to the rescue.
 

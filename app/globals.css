@@ -12,9 +12,24 @@
   --accent-dim: rgba(255, 255, 255, 0.08);
   --divider: rgba(255, 255, 255, 0.06);
   --divider-bright: rgba(255, 255, 255, 0.12);
-  --hero-tint: rgba(10, 10, 10, 0.35);
+  --hero-overlay: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 55%,
+    var(--bg) 100%
+  );
+  --image-overlay: linear-gradient(
+    to top,
+    var(--bg) 0%,
+    rgba(8, 8, 16, 0.82) 24%,
+    rgba(8, 8, 16, 0.50) 46%,
+    rgba(8, 8, 16, 0.20) 68%,
+    transparent 100%
+  );
   --nav-bg: rgba(10, 10, 10, 0.92);
   --nav-border: rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(20, 20, 20, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.16);
   --icon-github: #f0f6fc;
   --icon-linkedin: #0a66c2;
   --icon-email: #ea4335;
@@ -31,9 +46,24 @@ html.light {
   --accent-dim: rgba(0, 0, 0, 0.06);
   --divider: rgba(0, 0, 0, 0.07);
   --divider-bright: rgba(0, 0, 0, 0.12);
-  --hero-tint: rgba(180, 180, 180, 0.20);
+  --hero-overlay: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 55%,
+    var(--bg) 100%
+  );
+  --image-overlay: linear-gradient(
+    to top,
+    var(--bg) 0%,
+    rgba(255, 255, 255, 0.82) 24%,
+    rgba(255, 255, 255, 0.46) 46%,
+    rgba(255, 255, 255, 0.16) 68%,
+    transparent 100%
+  );
   --nav-bg: rgba(255, 255, 255, 0.92);
   --nav-border: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.38);
+  --glass-border: rgba(0, 0, 0, 0.14);
   --icon-github: #181717;
   --icon-linkedin: #0a66c2;
   --icon-email: #ea4335;
@@ -149,12 +179,6 @@ html.light .gradient-divider {
   transition: color 0.2s;
 }
 .link-muted:hover { color: var(--text); }
-
-.link-accent {
-  color: var(--text-muted);
-  transition: color 0.2s;
-}
-.link-accent:hover { color: var(--text); }
 
 /* ── Article prose — light mode overrides ────────────────────────────────── */
 html.light .prose { color: var(--text-secondary); }

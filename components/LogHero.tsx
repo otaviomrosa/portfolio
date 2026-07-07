@@ -8,13 +8,10 @@ export default function LogHero() {
       className="relative overflow-hidden"
       style={{ paddingTop: '12rem', paddingBottom: '6.5rem', background: 'var(--bg)' }}
     >
-      <div className="absolute inset-0">
+      <div className="absolute left-0 right-0 bottom-0 top-16">
         <ParticleCanvas className="w-full h-full" fadeBottom />
       </div>
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, var(--hero-tint), transparent 40%, var(--bg) 100%)' }}
-      />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--hero-overlay)' }} />
 
       <div className="relative z-10 text-center px-6">
         <h1

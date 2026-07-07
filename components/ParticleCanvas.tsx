@@ -23,14 +23,17 @@ export default function ParticleCanvas({ className, fadeBottom = false }: Props)
 
   const buildGrid = useCallback((width: number, height: number): Particle[] => {
     const particles: Particle[] = [];
-    const spacing = 38;
+    const spacing = 26;
     const cols = Math.ceil(width / spacing) + 1;
     const rows = Math.ceil(height / spacing) + 1;
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
+        // Bias rows toward the top so dots pack tighter near the nav bar and thin out lower down
+        const t = rows > 1 ? j / (rows - 1) : 0;
+        const baseY = height * Math.pow(t, 1.4);
         particles.push({
           baseX: i * spacing,
-          baseY: j * spacing,
+          baseY,
           size: 0.7 + Math.random() * 0.9,
           phase: Math.random() * Math.PI * 2,
           twinkleSpeed: 1.2 + Math.random() * 2.8,   // 1.2 – 4.0 Hz feel
@@ -95,13 +98,22 @@ export default function ParticleCanvas({ className, fadeBottom = false }: Props)
         const yFade = fadeBottom
           ? (ny < 0.45 ? 1 : Math.max(0, Math.cos(((ny - 0.45) / 0.55) * Math.PI / 2)))
           : 1;
-        const opacity = Math.pow(brightness, 2.4) * 0.65 * yFade;
+
+        // Pure black/white right under the nav bar, fading aggressively over the top ~45% of the hero (roughly down to the name)
+        const fadeSpan = 0.45;
+        const depthT = Math.pow(Math.min(1, ny / fadeSpan), 2.2);
+        // Dots near the top can hit full opacity (true black/white); farther down they cap out dimmer, as before
+        const opacityCeiling = 1 - 0.35 * depthT;
+        const opacity = Math.pow(brightness, 2.4) * opacityCeiling * yFade;
 
         if (opacity < 0.015) continue;
 
         const isLight = document.documentElement.classList.contains('light');
-        const dotRGB = isLight ? '90,90,90' : '210,210,210';
-        const glowRGB = isLight ? '80,80,80' : '215,215,215';
+        const nearRGB: [number, number, number] = isLight ? [0, 0, 0] : [255, 255, 255];
+        const farRGB: [number, number, number] = isLight ? [205, 205, 205] : [85, 85, 85];
+        const lerp = (a: number, b: number, amt: number) => Math.round(a + (b - a) * amt);
+        const dotRGB = `${lerp(nearRGB[0], farRGB[0], depthT)},${lerp(nearRGB[1], farRGB[1], depthT)},${lerp(nearRGB[2], farRGB[2], depthT)}`;
+        const glowRGB = dotRGB;
 
         ctx.beginPath();
         ctx.arc(px, py, radius, 0, Math.PI * 2);

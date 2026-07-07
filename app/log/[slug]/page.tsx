@@ -34,64 +34,71 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       <header className="relative overflow-hidden" style={{ height: '44vh', minHeight: '240px' }}>
         {post.image ? (
           <>
-            <Image src={post.image} alt={post.title} fill className="object-cover" />
+            <div className="absolute inset-0 overflow-hidden">
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                className="object-cover"
+                style={{ objectPosition: 'center', transform: 'scale(1.1)' }}
+              />
+            </div>
             <div
               className="absolute inset-0"
-              style={{ background: 'linear-gradient(to bottom, rgba(8,8,16,0.4), rgba(8,8,16,0.85) 80%, var(--bg) 100%)' }}
+              style={{ background: 'var(--image-overlay)' }}
             />
           </>
         ) : (
           <>
-            <div className="absolute inset-0">
+            <div className="absolute left-0 right-0 bottom-0 top-16">
               <ParticleCanvas className="w-full h-full" fadeBottom />
             </div>
-            <div
-              className="absolute inset-0"
-              style={{ background: 'linear-gradient(to bottom, var(--hero-tint), transparent 40%, var(--bg) 100%)' }}
-            />
+            <div className="absolute inset-0" style={{ background: 'var(--hero-overlay)' }} />
           </>
         )}
 
         {/* Back link */}
-        <div className="absolute top-20 left-0 right-0 px-6" style={{ maxWidth: '760px', margin: '0 auto' }}>
+        <div className="absolute top-20 left-0 right-0 z-10 px-6" style={{ maxWidth: '760px', margin: '0 auto' }}>
           <Link
             href="/log"
-            className="link-muted inline-flex items-center gap-1.5 text-xs"
+            className="inline-flex items-center gap-1.5 text-xs rounded-full px-3 py-1.5"
+            style={{
+              color: 'var(--text)',
+              background: 'var(--glass-bg)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid var(--glass-border)',
+            }}
           >
             <ArrowLeft size={13} strokeWidth={1.5} />
             Study Log
           </Link>
         </div>
 
-        {/* Post title in header */}
         <div
-          className="absolute bottom-8 left-0 right-0 px-6 z-10"
-          style={{ maxWidth: '760px', margin: '0 auto' }}
+          className="absolute left-0 right-0 z-10 mx-auto flex h-28 md:h-36 w-full max-w-[760px] flex-col justify-end px-6"
+          style={{ bottom: '1.5rem' }}
         >
-          <div className="flex flex-wrap items-center gap-4 mb-3">
-            <span
-              className="flex items-center gap-1.5 text-xs"
-              style={{ color: 'var(--text-muted)' }}
-            >
-              <Calendar size={12} strokeWidth={1.5} />
-              {formatDate(post.date)}
-            </span>
-            {post.tags && post.tags.length > 0 && (
-              <span
-                className="flex items-center gap-1.5 text-xs"
-                style={{ color: 'var(--text-muted)' }}
-              >
-                <Tag size={12} strokeWidth={1.5} />
-                {post.tags.join(', ')}
+          <div className="max-w-full">
+            <div className="flex flex-wrap items-center gap-4 mb-2">
+              <span className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-muted)' }}>
+                <Calendar size={12} strokeWidth={1.5} />
+                {formatDate(post.date)}
               </span>
-            )}
+              {post.tags && post.tags.length > 0 && (
+                <span className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-muted)' }}>
+                  <Tag size={12} strokeWidth={1.5} />
+                  {post.tags.join(', ')}
+                </span>
+              )}
+            </div>
+            <h1
+              className="text-2xl md:text-4xl font-bold leading-tight tracking-tight"
+              style={{ color: 'var(--text)' }}
+            >
+              {post.title}
+            </h1>
           </div>
-          <h1
-            className="text-2xl md:text-4xl font-bold leading-tight tracking-tight"
-            style={{ color: 'var(--text)' }}
-          >
-            {post.title}
-          </h1>
         </div>
       </header>
 
@@ -105,7 +112,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
           {/* Footer */}
           <div className="gradient-divider mt-16 mb-8" />
-          <Link href="/log" className="link-accent inline-flex items-center gap-2 text-sm">
+          <Link href="/log" className="inline-flex items-center gap-2 text-sm" style={{ color: 'var(--text)' }}>
             <ArrowLeft size={15} strokeWidth={1.5} />
             Back to Study Log
           </Link>
