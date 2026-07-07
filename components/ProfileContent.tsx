@@ -12,8 +12,8 @@ const experiences = [
     org: 'USF Bellini College of AI, Cybersecurity and Computing',
     roles: [
       {
-        title: 'Research Assistant — Generative Image Detection',
-        supervisor: 'Prof. Utkarsh Ojha',
+        title: 'Graduate Research Assistant — Generative Image Detection',
+        supervisor: 'Dr. Utkarsh Ojha',
         period: 'Jan 2026 – Present',
         bullets: [
           'Thesis research on the "Neural Turing Test": can deep classifiers reliably distinguish real photographs from state-of-the-art synthetic images?',

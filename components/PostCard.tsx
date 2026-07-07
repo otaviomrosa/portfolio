@@ -30,13 +30,16 @@ export default function PostCard({ post, index }: Props) {
           {/* Image / gradient banner */}
           <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/7' }}>
             {post.image ? (
-              <Image
-                src={post.image}
-                alt={post.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 680px"
-              />
+              <div className="absolute inset-0 overflow-hidden">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 680px"
+                  style={{ objectPosition: 'center', transform: 'scale(1.1)' }}
+                />
+              </div>
             ) : (
               <div
                 className="w-full h-full transition-transform duration-500 group-hover:scale-105"

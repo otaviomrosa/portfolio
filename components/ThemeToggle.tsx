@@ -27,10 +27,8 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label="Toggle theme"
-      className="fixed z-50 flex items-center justify-center transition-colors duration-200"
-      style={{ top: '32px', left: '24px', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }}
-      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--text)'; }}
-      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)'; }}
+      className="fixed z-50 flex items-center justify-center"
+      style={{ top: '32px', left: '24px', transform: 'translateY(-50%)', color: 'var(--text)' }}
     >
       {dark ? <Sun size={16} strokeWidth={1.6} /> : <Moon size={16} strokeWidth={1.6} />}
     </button>
