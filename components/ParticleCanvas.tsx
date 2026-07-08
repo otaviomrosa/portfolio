@@ -28,9 +28,13 @@ export default function ParticleCanvas({ className, fadeBottom = false }: Props)
     const rows = Math.ceil(height / spacing) + 1;
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
-        // Bias rows toward the top so dots pack tighter near the nav bar and thin out lower down
+        // Bias rows toward the top so dots pack tighter near the nav bar and thin out lower down.
+        // Offset the whole curve down by half a spacing unit so the first row isn't flush against
+        // the top edge (touching the nav bar). A gentler exponent widens the early gaps (roughly
+        // doubling the first one) while keeping the same smooth growth shape all the way down.
         const t = rows > 1 ? j / (rows - 1) : 0;
-        const baseY = height * Math.pow(t, 1.4);
+        const topOffset = spacing * 0.5;
+        const baseY = topOffset + (height - topOffset) * Math.pow(t, 1.15);
         particles.push({
           baseX: i * spacing,
           baseY,
