@@ -104,19 +104,28 @@ html.light ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); }
 html.light ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.22); }
 
 .card {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(32px) saturate(160%);
-  -webkit-backdrop-filter: blur(32px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(2px) saturate(160%);
+  -webkit-backdrop-filter: blur(2px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 16px; /* fallback for any .card without a specific radius class below */
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     inset 0 -1px 0 rgba(0, 0, 0, 0.08),
     0 8px 32px rgba(0, 0, 0, 0.22);
 }
 
+/* Per-card corner radii — each spot on the site can be tuned independently here */
+.card-hero-name { border-radius: 50px; }
+.card-hero-log { border-radius: 38px; }
+.card-sidebar { border-radius: 24px; }
+.card-main { border-radius: 24px; }
+.card-post-title { border-radius: 20px; }
+.card-post-body { border-radius: 24px; }
+.card-post-list { border-radius: 16px; }
+
 html.light .card {
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(0, 0, 0, 0.015);
   border-color: rgba(0, 0, 0, 0.08);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.8),

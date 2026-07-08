@@ -24,7 +24,7 @@ export default function PostCard({ post, index }: Props) {
     <div>
       <Link href={`/log/${post.slug}`} className="block group">
         <article
-          className="card card-hover overflow-hidden"
+          className="card card-hover card-post-list overflow-hidden"
           style={{ maxWidth: '680px', margin: '0 auto' }}
         >
           {/* Image / gradient banner */}
