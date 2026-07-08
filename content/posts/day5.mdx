@@ -1,0 +1,16 @@
+---
+title: "Structuring Python Projects for the Long Run"
+date: "2026-07-07"
+excerpt: "Turning the model registry into a proper installable Python package this week, and finding that writing tests changes the questions you ask about your own code."
+tags: ["Python", "Software Engineering", "AI Engineering", "MLOps", "Infrastructure"]
+image: "/images/posts/day5.jpg"
+---
+My current project, a model registry to log and organize my research work, has been growing faster than I expected. While this is great news, it also brings new organizational requirements. To be specific, all modules were living in a flat folder of scripts. While this worked, it was starting to feel crowded and unorganized, and far from what a package's structure should look like.
+
+The difference between a folder of `.py` files and an actual package comes down to `__init__.py`. This file tells Python "this directory is importable", and more importantly, lets you control what's public. Putting `from .metadata import ModelMetadata` in `__init__.py` lets anyone using the package write `from model_registry import ModelMetadata` instead of knowing the internal file structure. The point is to maintain implementation details hidden, an abstraction that provides a better user experience.
+
+Another thing that clicked today was the difference between the distribution name and the import name. Since I've never bothered designing an actual package before, I haven't come across these details. In this case, the repo is called `model-registry`, the installable package is called `model-registry`, but what you actually import is a folder called `model_registry` (with an underscore) that contains `__init__.py`. That was quite confusing until I understood that Python only cares about the folder name at import time.
+
+After restructuring the project and tidying it up, I worked on the first real test suite with pytest. I developed eight tests covering construction, validation, equality, hashing, the alternative constructor, and version validation.
+
+I didn't expect how much writing tests forces you to think about your API from the outside. Instead of thinking "does this code work?" (as I usually do), I started thinking "does this interface make sense?". It's a different question that I'll be asking for every project from here on.
