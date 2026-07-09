@@ -24,7 +24,7 @@ export default function LogHero() {
           className="text-base md:text-lg font-light leading-relaxed"
           style={{ color: 'var(--text-secondary)' }}
         >
-          Notes, research dives, and things I&apos;m currently thinking about.
+          Things I&apos;m currently studying and thinking about. Not AI generated.
         </p>
       </div>
     </section>
