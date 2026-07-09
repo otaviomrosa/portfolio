@@ -1,0 +1,21 @@
+---
+title: "Async Inference: What JavaScript Never Taught Me About `asyncio`"
+date: "2026-07-08"
+excerpt: "Coming from JavaScript async programming, I thought I knew this. Then I applied it to ML inference and realized the use case is entirely different."
+tags: ["Python", "Software Engineering", "AI Engineering", "MLOps", "Async"]
+image: "/images/posts/day6.jpg"
+---
+Coming from JavaScript async programming during my internship, I was very comfortable with asynchronous programming for web development. What I didn't realize is how different the use case feels in an ML context.
+
+In web development, async is mostly about network I/O, waiting for HTTP responses, database queries, file reads, or user input. The goal is to keep the server responsive while async functions wait for resources. I honestly never even thought about the applications of async outside of this environment.
+
+Then I realized: Inference is just waiting too. A model running forward pass on an input is a time-consuming operation, and while it's running, there is no reason that my model registry should be blocked from doing other things. These are the benchmark results running four models sequentially versus concurrently with `asyncio.gather()`:
+
+```
+Sequential inference: 0.30s
+Batch inference: 0.15s
+```
+
+What I also noticed is that the timing output of the batch inference operation was exactly the same as the latency of my slowest model. What this means is that while this model was running its forwards pass, `asyncio` allowed all the faster models to finish in the meantime, doubling the effective inference speed for this scenario.
+
+I'm particularly happy about how seamless the knowledge transition of JavaScript to Python async programming was. It really emphasized the importance to master fundamental programming concepts that generalize across fields.
