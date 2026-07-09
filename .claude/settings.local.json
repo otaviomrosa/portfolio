@@ -21,7 +21,9 @@
       "Bash(node *)",
       "Bash(grep -r \"#[0-9a-fA-F]\\\\{3,6\\\\}\\\\|rgba\\\\|--.*gray\\\\|--.*neutral\\\\|--.*color\" /Users/otavio/Documents/projects/portfolio/app/globals.css /Users/otavio/Documents/projects/portfolio/tailwind.config.ts /Users/otavio/Documents/projects/portfolio/components/ProfileContent.tsx /Users/otavio/Documents/projects/portfolio/components/NavBar.tsx /Users/otavio/Documents/projects/portfolio/app/log/page.tsx)",
       "Bash(npx tsc *)",
-      "Bash(xargs kill)"
+      "Bash(xargs kill)",
+      "Bash(grep -n '```' /Users/otavio/Documents/projects/portfolio/content/posts/day6.mdx)",
+      "Bash(grep -n \"^pre\\\\|[^-]pre \\\\|[^-]pre{\\\\|[^-]pre,\\\\| code \\\\|code{\\\\|code,\\\\|^code\" /Users/otavio/Documents/projects/portfolio/app/globals.css)"
     ]
   }
 }
