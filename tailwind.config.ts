@@ -25,6 +25,7 @@ const config: Config = {
             code: { color: "#cccccc", backgroundColor: "rgba(255,255,255,0.08)", borderRadius: "4px", padding: "2px 5px" },
             blockquote: { borderLeftColor: "rgba(255,255,255,0.20)", color: "#888888" },
             hr: { borderColor: "rgba(255,255,255,0.08)" },
+            pre: { backgroundColor: "rgba(255,255,255,0.08)", color: "#cccccc" },
             "pre code": { backgroundColor: "transparent", padding: "0" },
           },
         },

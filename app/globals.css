@@ -189,6 +189,11 @@ html.light .gradient-divider {
 }
 .link-muted:hover { color: var(--text); }
 
+/* Per-line highlight inside triple-tick code blocks — lighter than the bubble in dark mode.
+   In light mode, `html.light .prose code` below has higher specificity and wins instead,
+   giving the darker per-line tint there. */
+.prose pre code { background: rgba(255,255,255,0.06); }
+
 /* ── Article prose — light mode overrides ────────────────────────────────── */
 html.light .prose { color: var(--text-secondary); }
 html.light .prose h1,
@@ -199,5 +204,6 @@ html.light .prose strong { color: var(--text); }
 html.light .prose a { color: var(--text-muted); }
 html.light .prose a:hover { color: var(--text); }
 html.light .prose code { color: var(--text); background: rgba(0,0,0,0.06); }
+html.light .prose pre { background-color: rgba(0,0,0,0.06); color: var(--text); }
 html.light .prose blockquote { color: var(--text-muted); border-left-color: var(--divider-bright); }
 html.light .prose hr { border-color: var(--divider); }
