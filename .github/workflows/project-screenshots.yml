@@ -1,0 +1,39 @@
+name: Refresh project screenshots
+
+on:
+  schedule:
+    - cron: '17 9 * * 1' # Mondays 09:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+
+      - name: Take screenshots
+        run: node scripts/screenshot-projects.mjs
+
+      - name: Commit if changed
+        run: |
+          git add public/images/projects
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "Otavio Rosa"
+          git config user.email "otavio.exec@gmail.com"
+          git commit -m "Refresh project screenshots"
+          git push

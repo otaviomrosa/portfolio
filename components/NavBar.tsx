@@ -26,6 +26,7 @@ export default function NavBar() {
   }, [resumeOpen]);
 
   const isLog = pathname.startsWith('/log');
+  const isProjects = pathname.startsWith('/projects');
 
   return (
     <>
@@ -40,7 +41,8 @@ export default function NavBar() {
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-center">
           <div className="flex items-center gap-8">
-            <NavLink href="/" active={!isLog}>Profile</NavLink>
+            <NavLink href="/" active={!isLog && !isProjects}>Profile</NavLink>
+            <NavLink href="/projects" active={isProjects}>Projects</NavLink>
             <NavLink href="/log" active={isLog}>Log</NavLink>
             <NavLink active={false} onClick={() => setResumeOpen(true)}>Resume</NavLink>
           </div>

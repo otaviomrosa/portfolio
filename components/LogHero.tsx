@@ -2,7 +2,15 @@
 
 import ParticleCanvas from './ParticleCanvas';
 
-export default function LogHero() {
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+export default function LogHero({
+  title = 'Study Log',
+  subtitle = "Things I'm currently studying and thinking about. Not AI generated.",
+}: Props) {
   return (
     <section
       className="relative overflow-hidden"
@@ -18,13 +26,13 @@ export default function LogHero() {
           className="font-semibold tracking-tight mb-3"
           style={{ color: 'var(--text)', fontFamily: 'var(--font-space)', fontSize: 'clamp(2.4rem, 4.5vw, 3.4rem)', letterSpacing: '-0.02em' }}
         >
-          Study Log
+          {title}
         </h1>
         <p
           className="text-base md:text-lg font-light leading-relaxed"
           style={{ color: 'var(--text-secondary)' }}
         >
-          Things I&apos;m currently studying and thinking about. Not AI generated.
+          {subtitle}
         </p>
       </div>
     </section>
