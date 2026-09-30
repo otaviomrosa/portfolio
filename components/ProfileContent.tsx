@@ -7,112 +7,104 @@ const LABEL = 'var(--text-muted)';
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 
-const experiences = [
+type Role = {
+  title: string;
+  org: string;
+  period: string;
+  bullets: string[];
+};
+
+const experiences: Role[] = [
   {
-    org: 'USF Bellini College of AI, Cybersecurity and Computing',
-    roles: [
-      {
-        title: 'Graduate Research Assistant — Generative Image Detection',
-        supervisor: 'Dr. Utkarsh Ojha',
-        period: 'Jan 2026 – Present',
-        bullets: [
-          'Thesis research on the "Neural Turing Test": can deep classifiers reliably distinguish real photographs from state-of-the-art synthetic images?',
-          'Probing representational limits of discriminative networks via alternative image modalities; mapping where and why discriminative ability breaks down.',
-          'Co-author on a paper submitted to NeurIPS.',
-        ],
-      },
-      {
-        title: 'Undergraduate Researcher — Language GRASP Lab',
-        supervisor: 'Dr. Gene Kim',
-        period: 'Jan 2026 – Present',
-        bullets: [
-          'Large-scale behavioral analysis of open-source LLMs investigating nationality-based compliance bias via neuron probing and integrated gradients.',
-          'Presented "Quantifying Nationality-Based Compliance Bias in Qwen 2.5" at the 2026 AI+X Symposium.',
-        ],
-      },
-      {
-        title: 'Undergraduate Researcher — RARE Lab',
-        supervisor: 'Dr. Zhao Han',
-        period: 'Nov 2025 – Apr 2026',
-        bullets: [
-          'Built high-speed data acquisition pipelines for the Unitree Go2 quadruped robot.',
-          'Engineered a synchronized Master–Slave system (Python + WebRTC) for camera-projector calibration.',
-          'Managed edge deployments on NVIDIA Jetson Orin Nano across ROS 2, SSH, and UDP/TCP.',
-        ],
-      },
+    title: 'Founder',
+    org: "Please Don't Scroll",
+    period: 'Jun 2026 – Present',
+    bullets: [
+      'Designed, built and shipped a Manifest V3 Chrome extension published to the Chrome Web Store, a web dashboard and a Postgres backend, sharing one dependency-free JavaScript core so auth, sync and URL-matching logic live in a single place.',
+      "Wrote 138 zero-dependency unit tests on Node's built-in runner, covering URL-matching rules and the exact shape of every REST call via a mocked fetch.",
+      'Automated extension releases with a packaging script that strips dev-only origins, prunes unreferenced files and fails the build on any broken reference, cutting the shipped bundle from 2.45 MB to 83 KB.',
     ],
   },
   {
+    title: 'Software Engineering Intern',
     org: 'ClearSet.AI',
-    roles: [
-      {
-        title: 'Software Engineer Intern',
-        supervisor: '',
-        period: 'May – Jul 2025',
-        bullets: [
-          'Built 30+ Angular/TypeScript UI components, reducing feature dev time by ~20%.',
-          'Authored 30+ SQL migration scripts across 6 zero-downtime production releases.',
-          'Resolved 50+ full-stack bugs (C# .NET + Angular), cutting the backlog by 25%.',
-        ],
-      },
+    period: 'May 2025 – Dec 2025',
+    bullets: [
+      'Built 30+ reusable Angular/TypeScript UI components (e.g., data tables, form builders, dashboards) that became the shared base for 6+ product features.',
+      'Fixed 50+ bugs across the full application stack, from the C# .NET backend to the Angular frontend, implementing unit testing to improve system reliability and contributing to a 15% decrease in critical support tickets.',
+      'Wrote the SQL migrations for 4 feature rollouts and 10+ production data fixes, all deployed with zero downtime across 20,000+ user records.',
+    ],
+  },
+];
+
+const research: Role[] = [
+  {
+    title: 'Graduate AI & CV Researcher',
+    org: 'Dr. Utkarsh Ojha · University of South Florida',
+    period: 'Jan 2026 – Present',
+    bullets: [
+      'Co-first author, ICLR 2027 submission: showed real and AI-generated images remain separable under extreme abstraction (edge maps, heavy blur/downsampling) across 10 datasets, suggesting detectors rely on global composition rather than local artifacts.',
+      "Trained 400+ binary classifiers across 9 architectures (ResNet, DenseNet, SRNet, ViT, and 5 CNN variants) on CelebA, FFHQ, ImageNet, and generated datasets, running 1,000+ GPU-hours of SLURM jobs on USF's HPC cluster.",
     ],
   },
   {
-    org: 'Google Developer Group on Campus at USF',
-    roles: [
-      {
-        title: 'Community Lead',
-        supervisor: '',
-        period: 'Jan – May 2025',
-        bullets: [
-          'Co-led HackUSF: 200+ participants, $3 000+ in prizes.',
-          'Organized workshops with 20+ industry professionals; secured sponsorships cutting costs 40%.',
-        ],
-      },
+    title: 'Undergraduate CV & Robotics Researcher',
+    org: 'RARE Lab · University of South Florida',
+    period: 'Nov 2025 – Apr 2026',
+    bullets: [
+      'Built real-time projector-camera compensation for the Unitree Go2 quadruped (OpenCV, PyTorch, ROS2), reducing projection distortion on irregular surfaces by ~70% at 24 FPS for navigation in simulated disaster environments.',
+      "Set up an Ubuntu 20.04 VM on Apple Silicon that resolved ROS2 networking issues with the robot's peripherals.",
+    ],
+  },
+];
+
+const organizations: Role[] = [
+  {
+    title: 'Community Chair',
+    org: 'Google Developer Group',
+    period: 'Jan 2025 – May 2025',
+    bullets: [
+      'Led planning for HackUSF 2025 (300+ participants), managing 10+ organizers, timeline and logistics, and budget of $5,000.',
     ],
   },
 ];
 
 const skillGroups = [
   {
+    label: 'Languages',
+    tags: ['Python', 'JavaScript', 'TypeScript', 'HTML/CSS', 'C/C++', 'C#', 'SQL'],
+  },
+  {
+    label: 'Web',
+    tags: ['Angular', 'React', 'Node.js', '.NET', 'REST APIs'],
+  },
+  {
     label: 'AI / ML',
-    tags: ['PyTorch', 'Computer Vision', 'Generative Models', 'Diffusion Models', 'LLMs',
-           'Transformers', 'Fine-tuning', 'NLP', 'Mechanistic Interpretability',
-           'Feature Attribution', 'Hugging Face', 'OpenCV', 'NumPy', 'scikit-learn'],
+    tags: ['PyTorch', 'OpenCV', 'NumPy', 'scikit-learn', 'Matplotlib'],
   },
   {
-    label: 'Systems',
-    tags: ['Python', 'ROS 2', 'NVIDIA Jetson', 'CUDA', 'Edge Deployment',
-           'WebRTC', 'Docker', 'Linux/Unix', 'C# .NET'],
+    label: 'Infra & Tools',
+    tags: ['Git', 'Linux', 'PostgreSQL', 'SLURM/HPC', 'ROS2', 'Chrome Extensions (MV3)', 'Docker'],
   },
   {
-    label: 'Web & Data',
-    tags: ['Angular', 'TypeScript', 'React', 'FastAPI', 'REST APIs', 'SQL', 'PostgreSQL', 'Git'],
-  },
-  {
-    label: 'Research',
-    tags: ['Experimental Design', 'Scientific Writing', 'Bias Analysis',
-           'Statistical Analysis', 'Data Visualization'],
+    label: 'Spoken Languages',
+    tags: ['English (Fluent)', 'Portuguese (Native)', 'Spanish (Advanced)', 'Japanese (Lower-intermediate)'],
   },
 ];
 
 const education = [
   {
     school: 'University of South Florida',
-    degree: 'Master of Science, Computer Science',
-    period: '2026 – 2027',
+    degree: 'M.S., Computer Science',
+    details: ['GPA: 4.0/4.0'],
+    period: 'May 2027',
     current: true,
   },
   {
     school: 'University of South Florida',
-    degree: "Bachelor's Degree, Computer Science",
-    period: '2024 – 2026',
-    current: false,
-  },
-  {
-    school: 'Hillsborough Community College',
-    degree: 'Associate of Arts, Computer Science',
-    period: '2022 – 2024',
+    degree: 'B.S., Computer Science',
+    details: ['GPA: 3.9/4.0', "Presidential Honors Scholarship, Honors Medallion, 8x Dean's List"],
+    period: 'May 2026',
     current: false,
   },
 ];
@@ -142,6 +134,52 @@ function SectionHeading({ num, children }: { num: string; children: React.ReactN
   );
 }
 
+function RoleList({ roles }: { roles: Role[] }) {
+  return (
+    <div className="space-y-0">
+      {roles.map((role) => (
+        <div
+          key={`${role.org}-${role.title}`}
+          className="py-7"
+          style={{ borderBottom: '1px solid var(--divider)' }}
+        >
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
+            <div>
+              <p className="text-base font-semibold" style={{ color: 'var(--text)' }}>
+                {role.title}
+              </p>
+              <p className="text-sm mt-0.5" style={{ color: LABEL }}>
+                {role.org}
+              </p>
+            </div>
+            <span
+              className="text-sm shrink-0"
+              style={{ color: 'var(--text-muted)' }}
+            >
+              {role.period}
+            </span>
+          </div>
+          <ul className="space-y-1.5">
+            {role.bullets.map((b, bi) => (
+              <li
+                key={bi}
+                className="text-base leading-relaxed pl-3 relative"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                <span
+                  className="absolute left-0 top-[9px] w-1 h-1 rounded-full"
+                  style={{ background: 'var(--text-muted)' }}
+                />
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // ─── Main ───────────────────────────────────────────────────────────────────
 
 export default function ProfileContent() {
@@ -157,8 +195,8 @@ export default function ProfileContent() {
               {/* Stats */}
               <div className="space-y-3">
                 {[
-                  { value: 'NeurIPS', sub: 'paper submitted' },
-                  { value: '3×', sub: 'research labs' },
+                  { value: 'ICLR 2027', sub: 'co-first author submission' },
+                  { value: '4.0 GPA', sub: 'M.S. Computer Science' },
                   { value: "Spring '27", sub: 'graduating' },
                 ].map((s) => (
                   <div key={s.sub}>
@@ -216,13 +254,13 @@ export default function ProfileContent() {
                 <span style={{ color: 'var(--text)' }}>synthetic media detection</span>.
               </p>
               <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
-                My work has included LLM bias research, robotic vision systems, and edge AI deployment.
+                My work has included AI-generated image detection, robotic vision systems, and shipping full-stack products.
               </p>
               <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
                 I'm looking for AI/ML Engineering roles where research depth meets production systems.
               </p>
               <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                Previously at <span style={{ color: 'var(--text)' }}>ClearSet.AI</span>.
+                Founder of <span style={{ color: 'var(--text)' }}>Please Don't Scroll</span>, previously at <span style={{ color: 'var(--text)' }}>ClearSet.AI</span>.
               </p>
 
             </section>
@@ -230,54 +268,18 @@ export default function ProfileContent() {
             {/* Experience */}
             <section>
               <SectionHeading num="01">Experience</SectionHeading>
-              <div className="space-y-0">
-                {experiences.map((org) =>
-                  org.roles.map((role, ri) => (
-                    <div
-                      key={`${org.org}-${ri}`}
-                      className="py-7"
-                      style={{ borderBottom: '1px solid var(--divider)' }}
-                    >
-                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
-                        <div>
-                          <p className="text-base font-semibold" style={{ color: 'var(--text)' }}>
-                            {role.title}
-                          </p>
-                          <p className="text-sm mt-0.5" style={{ color: LABEL }}>
-                            {role.supervisor ? `${role.supervisor} · ` : ''}{org.org}
-                          </p>
-                        </div>
-                        <span
-                          className="text-sm shrink-0"
-                          style={{ color: 'var(--text-muted)' }}
-                        >
-                          {role.period}
-                        </span>
-                      </div>
-                      <ul className="space-y-1.5">
-                        {role.bullets.map((b, bi) => (
-                          <li
-                            key={bi}
-                            className="text-base leading-relaxed pl-3 relative"
-                            style={{ color: 'var(--text-secondary)' }}
-                          >
-                            <span
-                              className="absolute left-0 top-[9px] w-1 h-1 rounded-full"
-                              style={{ background: 'var(--text-muted)' }}
-                            />
-                            {b}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))
-                )}
-              </div>
+              <RoleList roles={experiences} />
+            </section>
+
+            {/* Research */}
+            <section>
+              <SectionHeading num="02">Research</SectionHeading>
+              <RoleList roles={research} />
             </section>
 
             {/* Skills */}
             <section>
-              <SectionHeading num="02">Skills &amp; Stack</SectionHeading>
+              <SectionHeading num="03">Skills &amp; Stack</SectionHeading>
               <div className="space-y-6">
                 {skillGroups.map((group) => (
                   <div key={group.label}>
@@ -299,12 +301,12 @@ export default function ProfileContent() {
 
             {/* Education */}
             <section>
-              <SectionHeading num="03">Education</SectionHeading>
+              <SectionHeading num="04">Education</SectionHeading>
               <div className="space-y-0">
                 {education.map((ed) => (
                   <div
                     key={ed.degree}
-                    className="py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1"
+                    className="py-5 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1"
                     style={{ borderBottom: '1px solid var(--divider)' }}
                   >
                     <div className="flex items-start gap-3">
@@ -329,6 +331,11 @@ export default function ProfileContent() {
                         <p className="text-sm mt-0.5" style={{ color: 'var(--text-secondary)' }}>
                           {ed.degree}
                         </p>
+                        {ed.details.map((d) => (
+                          <p key={d} className="text-sm mt-0.5" style={{ color: 'var(--text-muted)' }}>
+                            {d}
+                          </p>
+                        ))}
                       </div>
                     </div>
                     <span
@@ -342,12 +349,10 @@ export default function ProfileContent() {
               </div>
             </section>
 
-            {/* Certifications */}
+            {/* Organizations */}
             <section>
-              <SectionHeading num="04">Certifications</SectionHeading>
-              <p className="text-base" style={{ color: 'var(--text-secondary)' }}>
-                UR2PhD Undergraduate Research Training Course Participant
-              </p>
+              <SectionHeading num="05">Organizations</SectionHeading>
+              <RoleList roles={organizations} />
             </section>
 
           </div>
